@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="wrapper container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <span class="navbar-text"><a class="btn btn-sm border-primary btn-light text-dark" href="/leads" role="button">Leads</a></span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                <span class="navbar-text"><a class="btn btn-sm border-primary btn-light text-dark" href="/quiz" role="button">Art Advisory Quiz</a></span>
+            </div>
+        </nav>
+
+        <div id="wrapper">
+            <div class="container">
+                <h2 class="display-5">Lead Name</h2>
+                <p>Email: {lead.email}</p>
+                <p>Phone: {lead.phone_number}</p>
+                <p>Date Created: {lead.created_at}</p>
+            </div>
+    
+            <div class="container" id="lead:results">
+
+                    <table class="table table-bordered table-striped">
+                        <th scope="col">Data Points</th>
+                        <th scope="col">Response</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Persona</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Persona</th>
+                        <th scope="col">Date Created</th>
+                        <tr>
+                            <th scope="row">Intent</th>
+                            <td><a href="#">{{ lead.id }}</a></td>
+                            <td><a href="#">{{ lead.first_name }}</a></td>
+                            <td><a href="#">{{ lead.last_name }}</a></td>
+                            <td><a href="#">{{ lead.email }}</a></td>
+                            <td><a href="#">{{ lead.intent_score }}</a></td>
+                            <td><a href="#">{{ lead.persona_type }}</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Message Length</th>
+                            <td><a href="#">{{ lead.id }}</a></td>
+                            <td><a href="#">{{ lead.first_name }}</a></td>
+                            <td><a href="#">{{ lead.last_name }}</a></td>
+                            <td><a href="#">{{ lead.email }}</a></td>
+                            <td><a href="#">{{ lead.intent_score }}</a></td>
+                            <td><a href="#">{{ lead.persona_type }}</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Budget</th>
+                            <td><a href="#">{{ lead.id }}</a></td>
+                            <td><a href="#">{{ lead.first_name }}</a></td>
+                            <td><a href="#">{{ lead.last_name }}</a></td>
+                            <td><a href="#">{{ lead.email }}</a></td>
+                            <td><a href="#">{{ lead.intent_score }}</a></td>
+                            <td><a href="#">{{ lead.persona_type }}</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"># Photos Submitted</th>
+                            <td><a href="#">{{ lead.id }}</a></td>
+                            <td><a href="#">{{ lead.first_name }}</a></td>
+                            <td><a href="#">{{ lead.last_name }}</a></td>
+                            <td><a href="#">{{ lead.email }}</a></td>
+                            <td><a href="#">{{ lead.intent_score }}</a></td>
+                            <td><a href="#">{{ lead.persona_type }}</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Personality Questions</th>
+                            <td><a href="#">{{ lead.id }}</a></td>
+                            <td><a href="#">{{ lead.first_name }}</a></td>
+                            <td><a href="#">{{ lead.last_name }}</a></td>
+                            <td><a href="#">{{ lead.email }}</a></td>
+                            <td><a href="#">{{ lead.intent_score }}</a></td>
+                            <td><a href="#">{{ lead.persona_type }}</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Overall</th>
+                            <td><a href="#">{{ lead.id }}</a></td>
+                            <td><a href="#">{{ lead.first_name }}</a></td>
+                            <td><a href="#">{{ lead.last_name }}</a></td>
+                            <td><a href="#">{{ lead.email }}</a></td>
+                            <td><a href="#">{{ lead.intent_score }}</a></td>
+                            <td><a href="#">{{ lead.persona_type }}</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
