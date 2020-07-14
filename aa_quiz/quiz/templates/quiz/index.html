@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="quiz/static/css/custom.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="quiz/templates/quiz/style.css"> -->
     <title>Art Advisory Quiz</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -35,40 +37,45 @@
             <div class="container p-2 bg-light">
                 <p class="text-center">Thank you for your interest in our complimentary art advisory services! Please answer a few short questions to help us determine where you are in your art discovery process. One of our curators will follow up shortly to provide you with personalized assistance.<br>Let's get started!</p>
             </div>
-            <a class="btn btn-primary" href="#" role="button">Get Started</a>
+            <div class="text-center">
+                <a class="btn btn-primary" href="/quiz/intent" role="button">Get Started</a>
+            </div>
         </div>
 
         <br><br><br>
 
-        <div class="container border border-dark" id="intent">
+        <div class="container border border-dark" id="intent:detail">
             <h4>How Can We Help You?</h4>
             <div class="container bg-info" id="live_score">
                 <p>user score</p>
             </div>
-            <div class="container p-2 bg-light">
-                <p class="text-left">Select the option that best applies to you:</p>
-            </div>
-            <form>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="intent_air">
-                <label class="form-check-label" for="info_request">I have a question about an artwork I saw on Saatchi Art</label>
-            </div> 
-            <div class="form-check">   
-                <input type="checkbox" class="form-check-input" id="intent_specspace">
-                <label class="form-check-label" for="specspace">I need help finding art for a specific space</label>
-            </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="intent_inspo">
-                <label class="form-check-label" for="insp">I am browsing for inspiration</label>
-            </div>
-            <a class="" href="#">Back</a>
-            <a class="btn btn-primary" href="#" role="button">Next</a>
+            <form action="/quiz/intent/process" method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <div class="container p-2 bg-light">
+                        <label for="intent" class="text-left">Select the option that best applies to you:</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="intent" id="intent:air" value="air">
+                        <label class="form-check-label" for="intent:air">I have a question about an artwork I saw on Saatchi Art</label>
+                    </div> 
+                    <div class="form-check">   
+                        <input class="form-check-input" type="radio" name="intent" id="intent:specspace" value="specspace">
+                        <label class="form-check-label" for="intent:specspace">I need help finding art for a specific space</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="intent" id="intent:inspo" value="inspo">
+                        <label class="form-check-label" for="intent:inspo">I am browsing for inspiration</label>
+                    </div>
+                </fieldset>
+                <a class="" href="/quiz">Back</a>
+                <button type="submit" class="btn btn-success">Next</button>
             </form>
         </div>
 
         <br><br><br>
 
-        <div class="container border border-dark" id="air:detail">
+        <div class="container border border-dark" id="art-info:detail">
             <h4>Artwork Information Request</h4>
             <div class="container bg-info" id="live_score">
                 <p>user score</p>
@@ -76,37 +83,40 @@
             <div class="container p-2 bg-light">
                 <p class="text-left">Please submit the artwork information and your question, below:</p>
             </div>
-            <form>
-                <div class="bg-info" id="air:form-group">
+            <form action="/quiz/info_request/process" method="POST">
+                {% csrf_token %}
+                <div class="bg-info" id="art-info:form-group">
                     <div class="form-group row">
-                        <label for="air:url" class="col-sm-2 col-form-label">Artwork URL:</label>
+                        <label for="art-info-url" class="col-sm-2 col-form-label">Artwork URL:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control w-50" id="air:url" placeholder="https://www.saatchiart.com/art/artwork_title">
+                            <input type="text" class="form-control w-50" name="art-info-url" id="art-info:url" placeholder="https://www.saatchiart.com/art/artwork_title">
                         </div>
                     </div>
                     <p>OR</p>
                     <div class="form-group row">
-                        <label for="air:artist" class="col-sm-2 col-form-label">Artist Name:</label>
+                        <label for="art-info-artist" class="col-sm-2 col-form-label">Artist Name:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control w-50" id="air:artist" placeholder="Bob Ross">
+                            <input type="text" class="form-control w-50" name="art-info-artist" id="art-info:artist" placeholder="Bob Ross">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="air:title" class="col-sm-2 col-form-label">Artwork Title:</label>
+                        <label for="art-info-title" class="col-sm-2 col-form-label">Artwork Title:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control w-50" id="air:title" placeholder="Happy Little Trees">
+                            <input type="text" class="form-control w-50" name="art-info-title" id="art-info:title" placeholder="Happy Little Trees">
                         </div>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="air:num-works" class="col-sm-2 col-form-label">Question:</label>
+                    <label for="art-info-num-works" class="col-sm-2 col-form-label">Question:</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control w-50" id="air:message" rows="3" placeholder="Please enter your question here."></textarea>
+                        <textarea class="form-control w-50" name="art-info-message" id="art-info:message" rows="3" placeholder="Please enter your question here."></textarea>
                     </div>
                 </div>
+                <div class="text-center">
+                    <a class="" href="/quiz/intent">Back</a>
+                    <button type="submit" class="btn btn-success">Next</button>
+                </div>
             </form>
-            <a class="" href="#">Back</a>
-            <a class="btn btn-primary" href="#" role="button">Next</a>
         </div>
 
         <br><br><br>
@@ -120,6 +130,7 @@
                 <p class="text-center">Please uploade some images of your home and the wall(s) where you intend to hang art. Provide dimensions and any other information our curators should consider when putting together suggestions for you.</p>
             </div>
             <form>
+                {% csrf_token %}
                 <div class="form-group row">
                     <label for="specspace::num-works" class="col-sm-2 col-form-label">How many artworks are you looking for?</label>
                     <div class="col-sm-10">
@@ -137,8 +148,10 @@
                         <input type="file" class="custom-file-input" id="specspace:img-upload">
                         <label class="custom-file-label w-25" for="specspace:img-upload">Choose file</label>
                     </div>
-                <a class="" href="#">Back</a>
-                <a class="btn btn-primary" href="#" role="button">Next</a>
+                <div class="text-center">
+                    <a class="" href="#">Back</a>
+                    <button type="submit" class="btn btn-success">Next</button>
+                </div>
             </form>
         </div>
 
@@ -156,6 +169,7 @@
                 <p class="text-left">Select any/all that apply:</p>
             </div>
             <form>
+                {% csrf_token %}
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="persona:lw-1">
                     <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
@@ -192,10 +206,12 @@
                     <input type="checkbox" class="form-check-input" id="persona:lw-1">
                     <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
                 </div>
-                <a class="" href="#">Back</a>
-                <a class="btn btn-primary" href="#" role="button">Next</a>
-                <a class="" href="#">(skip to the end)</a>
-                </form>
+                <div class="text-center">
+                    <a class="" href="#">Back</a>
+                    <button type="submit" class="btn btn-success">Next</button>
+                    <a class="" href="#">(skip to the end)</a>
+                </div>
+            </form>
         </div>
 
         <br><br><br>
@@ -212,22 +228,25 @@
                 <p class="text-left">Select any/all that apply:</p>
             </div>
             <form>
+                {% csrf_token %}
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <a class="" href="#">Back</a>
-                <a class="btn btn-primary" href="#" role="button">Next</a>
-                <a class="" href="#">(skip to the end)</a>
-                </form>
+                <div class="text-center">
+                    <a class="" href="#">Back</a>
+                    <button type="submit" class="btn btn-success">Next</button>
+                    <a class="" href="#">(skip to the end)</a>
+                </div>
+            </form>
         </div>
 
         <br><br><br>
 
         <div class="container border border-dark" id="search:detail-subjects">
-            <h4>Categories</h4>
+            <h4>Subjects</h4>
             <div class="container bg-info" id="live_score">
                 <p>user score</p>
             </div>
@@ -238,22 +257,25 @@
                 <p class="text-left">Select any/all that apply:</p>
             </div>
             <form>
+                {% csrf_token %}
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <a class="" href="#">Back</a>
-                <a class="btn btn-primary" href="#" role="button">Next</a>
-                <a class="" href="#">(skip to the end)</a>
-                </form>
+                <div class="text-center">
+                    <a class="" href="#">Back</a>
+                    <button type="submit" class="btn btn-success">Next</button>
+                    <a class="" href="#">(skip to the end)</a>
+                </div>
+            </form>
         </div>
 
         <br><br><br>
 
         <div class="container border border-dark" id="search:detail-styles">
-            <h4>Categories</h4>
+            <h4>Styles</h4>
             <div class="container bg-info" id="live_score">
                 <p>user score</p>
             </div>
@@ -264,6 +286,7 @@
                 <p class="text-left">Select any/all that apply:</p>
             </div>
             <form>
+                {% csrf_token %}
                 <div class="form-group row">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
@@ -274,9 +297,9 @@
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
                 </div>
-                <div class="form-group row">
+                <div class="text-center">
                     <a class="" href="#">Back</a>
-                    <a class="btn btn-primary" href="#" role="button">Next</a>
+                    <button type="submit" class="btn btn-success">Next</button>
                     <a class="" href="#">(skip to the end)</a>
                 </div>
             </form>
@@ -294,6 +317,7 @@
             <p class="text-left">Please leave your budget and contact information below:</p>
         </div>
         <form>
+            {% csrf_token %}
             <div class="form-group row">
                 <label for="art_url" class="col-sm-2 col-form-label">Budget (per artwork):</label>
                 <div class="col-sm-10 row">
@@ -329,11 +353,11 @@
                 <input type="checkbox" class="form-check-input" id="contact:newsletter">
                 <label class="form-check-label" for="contact:newsletter">I do not want to subscribe to Saatchi Art's newsletter.</label>
             </div>
+            <div class="text-center">
+                <a class="" href="#">Back</a>
+                <a class="btn btn-primary" href="#" role="button">Submit</a>
+            </div>
         </form>
-        <div class="form-group row">
-        <a class="" href="#">Back</a>
-        <a class="btn btn-primary" href="#" role="button">Submit</a>
-        </div>
     </div>
 
     <br><br><br>
@@ -364,7 +388,7 @@
                 <li>follow up action 3</li>
             </ul>
         </div>
-        <div class="row">
+        <div class="text-center">
             <a class="btn btn-primary" href="#" role="button">See Lead Results Breakdown</a>
         </div>
     </div>
