@@ -2,6 +2,35 @@ from django.shortcuts import render, HttpResponse, redirect
 
 # Create your views here.
 
+''' TEMPLATE FOR MAIN VIEWS: 
+
+def q_view(request):
+    # check that form is valid: 
+    if not in request.session:
+        ...code here...
+        return redirect('quiz/view)
+    
+    context = {
+        'url_next' = '',
+        'url_back' = '',
+    }
+    return render(request, 'quiz/view.html)
+
+
+def process_view(request):
+    # capture form results and store in session:
+    # if applicable, set conditions to determine where to redirect
+    if request.POST == x:
+        return redirect('quiz/view_x')
+    elif request.POST == y:
+        return redirect('quiz/view_y')
+    else:
+        return redirect('quiz/view_z')
+
+'''
+
+
+
 
 def q_welcome(request):
     # Render the welcome slide for AA Quiz
@@ -24,9 +53,9 @@ def process_intent(request):
     print(request.session['intent'])
     # redirect to appropriate form
     if request.POST['intent'] == 'info-request':
-        return redirect('/quiz/contact')
+        return redirect('/quiz/')
     elif request.POST['intent'] == 'spec-space':
-        return redirect('/quiz/info_request')
+        return redirect('/quiz/spec_space')
     else:
         return redirect('/quiz')
 
@@ -54,13 +83,25 @@ def q_spec_space(request):
     pass
 
 
+def process_spec_space(request):
+    pass
+
+
 def q_persona(request):
     # render Persona form
     pass
 
 
+def process_persona(request):
+    pass
+
+
 def q_category(request):
-    #render Category form
+    # render Category form
+    pass
+
+
+def process_category(request):
     pass
 
 
@@ -69,8 +110,16 @@ def q_subject(request):
     pass
 
 
+def process_subject(request):
+    pass
+
+
 def q_style(request):
     # render Style form
+    pass
+
+
+def process_style(request):
     pass
 
 
