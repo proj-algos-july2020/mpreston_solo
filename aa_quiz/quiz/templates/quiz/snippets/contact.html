@@ -6,7 +6,7 @@
     <div class="container p-2 bg-light">
         <p class="text-left">Please leave your budget and contact information below:</p>
     </div>
-    <form>
+    <form action="/quiz/contact/process" method="POST">
         {% csrf_token %}
         <div class="form-group row">
             <label for="art_url" class="col-sm-2 col-form-label">Budget (per artwork):</label>

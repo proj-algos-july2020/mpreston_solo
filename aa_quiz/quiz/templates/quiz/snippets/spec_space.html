@@ -6,7 +6,7 @@
     <div class="container p-2 bg-light">
         <p class="text-center">Please uploade some images of your home and the wall(s) where you intend to hang art. Provide dimensions and any other information our curators should consider when putting together suggestions for you.</p>
     </div>
-    <form>
+    <form action="/quiz/spec_space/process" method="POST">
         {% csrf_token %}
         <div class="form-group row">
             <label for="specspace::num-works" class="col-sm-2 col-form-label">How many artworks are you looking for?</label>
@@ -27,7 +27,7 @@
             </div>
         <div class="text-center">
             <a class="" type="button" href="#">Back</a>
-            <button type="submit" class="btn btn-success">Next</button>
+            <button type="submit" href="/quiz/spec_space/process" class="btn btn-success quiznav">Next</button>
         </div>
     </form>
 </div>

@@ -9,7 +9,7 @@
     <div class="container">
         <p class="text-left">Select any/all that apply:</p>
     </div>
-    <form>
+    <form action="/quiz/style/process" method="POST">
         {% csrf_token %}
         <div class="form-group row">
         <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
@@ -23,7 +23,7 @@
         </div>
         <div class="text-center">
             <a class="" href="#">Back</a>
-            <button type="submit" class="btn btn-success">Next</button>
+            <button type="submit" href="/quiz/style/process" class="btn btn-success quiznav">Next</button>
             <a class="" href="#">(skip to the end)</a>
         </div>
     </form>

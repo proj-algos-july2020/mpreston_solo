@@ -30,8 +30,6 @@ def process_view(request):
 '''
 
 
-
-
 def q_welcome(request):
     # Render the welcome slide for AA Quiz
     request.session
@@ -53,11 +51,11 @@ def process_intent(request):
     print(request.session['intent'])
     # redirect to appropriate form
     if request.POST['intent'] == 'info-request':
-        return redirect('/quiz/')
+        return redirect('/quiz/info_request')
     elif request.POST['intent'] == 'spec-space':
         return redirect('/quiz/spec_space')
     else:
-        return redirect('/quiz')
+        return redirect('/quiz/persona')
 
 
 def q_info_request(request):
@@ -75,52 +73,52 @@ def process_info_request(request):
         print(item)
     # redirect to next form
     # conditionals
-    return redirect('/quiz')
- 
+    return redirect('/quiz/contact')
+
 
 def q_spec_space(request):
     # render Specific Space form
-    pass
+    return render(request, 'quiz/snippets/spec_space.html')
 
 
 def process_spec_space(request):
-    pass
+    return redirect('/quiz/persona')
 
 
 def q_persona(request):
     # render Persona form
-    pass
+    return render(request, 'quiz/snippets/persona.html')
 
 
 def process_persona(request):
-    pass
+    return redirect('/quiz/category')
 
 
 def q_category(request):
     # render Category form
-    pass
+    return render(request, 'quiz/snippets/category.html')
 
 
 def process_category(request):
-    pass
+    return redirect('/quiz/subject')
 
 
 def q_subject(request):
     # render Subject form
-    pass
+    return render(request, 'quiz/snippets/subject.html')
 
 
 def process_subject(request):
-    pass
+    return redirect('/quiz/style')
 
 
 def q_style(request):
     # render Style form
-    pass
+    return render(request, 'quiz/snippets/style.html')
 
 
 def process_style(request):
-    pass
+    return redirect('/quiz/contact')
 
 
 def q_contact(request):
@@ -130,14 +128,13 @@ def q_contact(request):
 
 def process_contact(request):
     # capture form results and store in session
-    
+  
     # create new lead in DB
 
     # redirect to q_results
-    return HttpResponse("sending you to the results page")
+    return redirect('/quiz/result')
 
 
 def q_result(request):
     # render quiz Results page
-    pass
-
+    return render(request, 'quiz/snippets/result.html')
