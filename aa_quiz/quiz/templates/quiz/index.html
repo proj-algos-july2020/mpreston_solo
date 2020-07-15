@@ -32,335 +32,342 @@
 
         <br><br>
 
-        <div class="container border border-dark" id="welcome">
-            <h4>Welcome</h4>
-            <div class="container p-2 bg-light">
-                <p class="text-center">Thank you for your interest in our complimentary art advisory services! Please answer a few short questions to help us determine where you are in your art discovery process. One of our curators will follow up shortly to provide you with personalized assistance.<br>Let's get started!</p>
-            </div>
-            <div class="text-center">
-                <a class="btn btn-primary" href="/quiz/intent" role="button">Get Started</a>
-            </div>
-        </div>
+        <div id="quiz-container"> (new html goes here!)
 
-        <br><br><br>
-
-        <div class="container border border-dark" id="intent:detail">
-            <h4>How Can We Help You?</h4>
-            <div class="container bg-info" id="live_score">
-                <p>user score</p>
-            </div>
-            <form action="/quiz/intent/process" method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group">
+            <div class="container border border-dark" id="welcome">
+                <h4>Welcome</h4>
+                <form action="/quiz/intent" method="POST">
+                    {% csrf_token %}
                     <div class="container p-2 bg-light">
-                        <label for="intent" class="text-left">Select the option that best applies to you:</label>
+                        <p class="text-center">Thank you for your interest in our complimentary art advisory services! Please answer a few short questions to help us determine where you are in your art discovery process. One of our curators will follow up shortly to provide you with personalized assistance.<br>Let's get started!</p>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="intent" id="intent:air" value="air">
-                        <label class="form-check-label" for="intent:air">I have a question about an artwork I saw on Saatchi Art</label>
+                    <div class="text-center">
+                        <button type="submit" href="/quiz/intent" class="btn btn-success quiznav">Get Started</button>
+                    </div>
+                </form>
+            </div>
+
+            <br><br><br>
+
+            <!-- <div class="container border border-dark" id="intent:detail">
+                <h4>How Can We Help You?</h4>
+                <div class="container bg-info" id="live_score">
+                    <p>user score</p>
+                </div>
+                <form action="/quiz/intent/process" method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <div class="container p-2 bg-light">
+                            <label for="intent" class="text-left">Select the option that best applies to you:</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="intent" id="intent:air" value="air">
+                            <label class="form-check-label" for="intent:air">I have a question about an artwork I saw on Saatchi Art</label>
+                        </div> 
+                        <div class="form-check">   
+                            <input class="form-check-input" type="radio" name="intent" id="intent:specspace" value="specspace">
+                            <label class="form-check-label" for="intent:specspace">I need help finding art for a specific space</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="intent" id="intent:inspo" value="inspo">
+                            <label class="form-check-label" for="intent:inspo">I am browsing for inspiration</label>
+                        </div>
+                    </fieldset>
+                    <a class="" href="/quiz">Back</a>
+                    <button type="submit" class="btn btn-success">Next</button>
+                </form>
+            </div> -->
+
+            <!-- <br><br><br>
+
+            <div class="container border border-dark" id="art-info:detail">
+                <h4>Artwork Information Request</h4>
+                <div class="container bg-info" id="live_score">
+                    <p>user score</p>
+                </div>
+                <div class="container p-2 bg-light">
+                    <p class="text-left">Please submit the artwork information and your question, below:</p>
+                </div>
+                <form action="/quiz/info_request/process" method="POST">
+                    {% csrf_token %}
+                    <div class="bg-info" id="art-info:form-group">
+                        <div class="form-group row">
+                            <label for="art-info-url" class="col-sm-2 col-form-label">Artwork URL:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control w-50" name="art-info-url" id="art-info:url" placeholder="https://www.saatchiart.com/art/artwork_title">
+                            </div>
+                        </div>
+                        <p>OR</p>
+                        <div class="form-group row">
+                            <label for="art-info-artist" class="col-sm-2 col-form-label">Artist Name:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control w-50" name="art-info-artist" id="art-info:artist" placeholder="Bob Ross">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="art-info-title" class="col-sm-2 col-form-label">Artwork Title:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control w-50" name="art-info-title" id="art-info:title" placeholder="Happy Little Trees">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="art-info-num-works" class="col-sm-2 col-form-label">Question:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control w-50" name="art-info-message" id="art-info:message" rows="3" placeholder="Please enter your question here."></textarea>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a class="" href="/quiz/intent">Back</a>
+                        <button type="submit" class="btn btn-success">Next</button>
+                    </div>
+                </form>
+            </div> -->
+
+            <br><br><br>
+
+            <div class="container border border-dark" id="specspace:detail">
+                <h4>Tell Us About Your Space</h4>
+                <div class="container bg-info" id="live_score">
+                    <p>user score</p>
+                </div>
+                <div class="container p-2 bg-light">
+                    <p class="text-center">Please uploade some images of your home and the wall(s) where you intend to hang art. Provide dimensions and any other information our curators should consider when putting together suggestions for you.</p>
+                </div>
+                <form>
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="specspace::num-works" class="col-sm-2 col-form-label">How many artworks are you looking for?</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control w-25" id="specspace::num-works" placeholder="2-3">
+                        </div>
                     </div> 
-                    <div class="form-check">   
-                        <input class="form-check-input" type="radio" name="intent" id="intent:specspace" value="specspace">
-                        <label class="form-check-label" for="intent:specspace">I need help finding art for a specific space</label>
+                    <div class="form-group row">
+                        <label for="specspace::message" class="col-sm-2 col-form-label">Message:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control w-50" id="specspace:message" rows="3" placeholder="Please enter your question here."></textarea>
+                        </div>
+                    </div>
+                        <div class="form-group custom-file">
+                            <!-- <label for="img_upload" class="col-form-label custom-file-label w-50">Choose file</label> -->
+                            <input type="file" class="custom-file-input" id="specspace:img-upload">
+                            <label class="custom-file-label w-25" for="specspace:img-upload">Choose file</label>
+                        </div>
+                    <div class="text-center">
+                        <a class="" type="button" href="#">Back</a>
+                        <button type="submit" class="btn btn-success">Next</button>
+                    </div>
+                </form>
+            </div>
+
+            <br><br><br>
+
+            <div class="container border border-dark" id="persona:detail">
+                <h4>What Does Art Mean To You?</h4>
+                <div class="container bg-info" id="live_score">
+                    <p>user score</p>
+                </div>
+                <div class="container p-2 bg-light">
+                    <p class="text-center">Tell us what you are looking for in an artwork.</p>
+                </div>
+                <div class="container">
+                    <p class="text-left">Select any/all that apply:</p>
+                </div>
+                <form>
+                    {% csrf_token %}
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="persona:lw-1">
+                        <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="intent" id="intent:inspo" value="inspo">
-                        <label class="form-check-label" for="intent:inspo">I am browsing for inspiration</label>
+                        <input type="checkbox" class="form-check-input" id="persona:lw-1">
+                        <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
                     </div>
-                </fieldset>
-                <a class="" href="/quiz">Back</a>
-                <button type="submit" class="btn btn-success">Next</button>
-            </form>
-        </div>
-
-        <br><br><br>
-
-        <div class="container border border-dark" id="art-info:detail">
-            <h4>Artwork Information Request</h4>
-            <div class="container bg-info" id="live_score">
-                <p>user score</p>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="persona:lw-1">
+                        <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="persona:lw-1">
+                        <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="persona:lw-1">
+                        <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="persona:lw-1">
+                        <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="persona:lw-1">
+                        <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="persona:lw-1">
+                        <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="persona:lw-1">
+                        <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
+                    </div>
+                    <div class="text-center">
+                        <a class="" href="#">Back</a>
+                        <button type="submit" class="btn btn-success">Next</button>
+                        <a class="" href="#">(skip to the end)</a>
+                    </div>
+                </form>
             </div>
-            <div class="container p-2 bg-light">
-                <p class="text-left">Please submit the artwork information and your question, below:</p>
+
+            <br><br><br>
+
+            <div class="container border border-dark" id="search:detail-category">
+                <h4>Categories</h4>
+                <div class="container bg-info" id="live_score">
+                    <p>user score</p>
+                </div>
+                <div class="container p-2 bg-light">
+                    <p class="text-center">Are there categories of art you are NOT interested in seeing?</p>
+                </div>
+                <div class="container">
+                    <p class="text-left">Select any/all that apply:</p>
+                </div>
+                <form>
+                    {% csrf_token %}
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <div class="text-center">
+                        <a class="" href="#">Back</a>
+                        <button type="submit" class="btn btn-success">Next</button>
+                        <a class="" href="#">(skip to the end)</a>
+                    </div>
+                </form>
             </div>
-            <form action="/quiz/info_request/process" method="POST">
-                {% csrf_token %}
-                <div class="bg-info" id="art-info:form-group">
+
+            <br><br><br>
+
+            <div class="container border border-dark" id="search:detail-subjects">
+                <h4>Subjects</h4>
+                <div class="container bg-info" id="live_score">
+                    <p>user score</p>
+                </div>
+                <div class="container p-2 bg-light">
+                    <p class="text-center">Which subjects are you most interested in?</p>
+                </div>
+                <div class="container">
+                    <p class="text-left">Select any/all that apply:</p>
+                </div>
+                <form>
+                    {% csrf_token %}
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <div class="text-center">
+                        <a class="" href="#">Back</a>
+                        <button type="submit" class="btn btn-success">Next</button>
+                        <a class="" href="#">(skip to the end)</a>
+                    </div>
+                </form>
+            </div>
+
+            <br><br><br>
+
+            <div class="container border border-dark" id="search:detail-styles">
+                <h4>Styles</h4>
+                <div class="container bg-info" id="live_score">
+                    <p>user score</p>
+                </div>
+                <div class="container p-2 bg-light">
+                    <p class="text-center">What styles and qualities would you like to see?</p>
+                </div>
+                <div class="container">
+                    <p class="text-left">Select any/all that apply:</p>
+                </div>
+                <form>
+                    {% csrf_token %}
                     <div class="form-group row">
-                        <label for="art-info-url" class="col-sm-2 col-form-label">Artwork URL:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control w-50" name="art-info-url" id="art-info:url" placeholder="https://www.saatchiart.com/art/artwork_title">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    </div>  
+                    <div class="form-group row">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+                    </div>
+                    <div class="text-center">
+                        <a class="" href="#">Back</a>
+                        <button type="submit" class="btn btn-success">Next</button>
+                        <a class="" href="#">(skip to the end)</a>
+                    </div>
+                </form>
+            </div>
+        
+
+            <br><br><br>
+
+            <!-- <div class="container border border-dark" id="contact:detail">
+                <h4>Contact Details</h4>
+                <div class="container bg-info" id="live_score">
+                    <p>user score</p>
+                </div>
+                <div class="container p-2 bg-light">
+                    <p class="text-left">Please leave your budget and contact information below:</p>
+                </div>
+                <form>
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="art_url" class="col-sm-2 col-form-label">Budget (per artwork):</label>
+                        <div class="col-sm-10 row">
+                            Min: $<input type="text" class="form-control w-25" id="contact:budget-min" placeholder="2,500">
+                            Max: $<input type="text" class="form-control w-25" id="contact:budget-max" placeholder="5,000">
                         </div>
                     </div>
-                    <p>OR</p>
                     <div class="form-group row">
-                        <label for="art-info-artist" class="col-sm-2 col-form-label">Artist Name:</label>
+                        <label for="contact:first-name" class="col-sm-2 col-form-label">First Name:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control w-50" name="art-info-artist" id="art-info:artist" placeholder="Bob Ross">
+                            <input type="text" class="form-control w-50" id="contact:first-name" placeholder="Veronice">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="art-info-title" class="col-sm-2 col-form-label">Artwork Title:</label>
+                        <label for="contact:last-name" class="col-sm-2 col-form-label">Last Name:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control w-50" name="art-info-title" id="art-info:title" placeholder="Happy Little Trees">
+                            <input type="text" class="form-control w-50" id="contact:last-name" placeholder="Lodge">
                         </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="art-info-num-works" class="col-sm-2 col-form-label">Question:</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control w-50" name="art-info-message" id="art-info:message" rows="3" placeholder="Please enter your question here."></textarea>
+                    <div class="form-group row">
+                        <label for="contact:email" class="col-sm-2 col-form-label">Email Address:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control w-50" id="contact:email" placeholder="ronnie@riverdale.com">
+                        </div>
                     </div>
-                </div>
-                <div class="text-center">
-                    <a class="" href="/quiz/intent">Back</a>
-                    <button type="submit" class="btn btn-success">Next</button>
-                </div>
-            </form>
-        </div>
-
-        <br><br><br>
-
-        <div class="container border border-dark" id="specspace:detail">
-            <h4>Tell Us About Your Space</h4>
-            <div class="container bg-info" id="live_score">
-                <p>user score</p>
-            </div>
-            <div class="container p-2 bg-light">
-                <p class="text-center">Please uploade some images of your home and the wall(s) where you intend to hang art. Provide dimensions and any other information our curators should consider when putting together suggestions for you.</p>
-            </div>
-            <form>
-                {% csrf_token %}
-                <div class="form-group row">
-                    <label for="specspace::num-works" class="col-sm-2 col-form-label">How many artworks are you looking for?</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control w-25" id="specspace::num-works" placeholder="2-3">
+                    <div class="form-group row">
+                        <label for="contact:phone" class="col-sm-2 col-form-label">Phone Number (optional):</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control w-50" id="contact:phone" placeholder="123-456-7890">
+                        </div>
                     </div>
-                </div> 
-                <div class="form-group row">
-                    <label for="specspace::message" class="col-sm-2 col-form-label">Message:</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control w-50" id="specspace:message" rows="3" placeholder="Please enter your question here."></textarea>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="contact:newsletter">
+                        <label class="form-check-label" for="contact:newsletter">I do not want to subscribe to Saatchi Art's newsletter.</label>
                     </div>
-                </div>
-                    <div class="form-group custom-file">
-                        <!-- <label for="img_upload" class="col-form-label custom-file-label w-50">Choose file</label> -->
-                        <input type="file" class="custom-file-input" id="specspace:img-upload">
-                        <label class="custom-file-label w-25" for="specspace:img-upload">Choose file</label>
+                    <div class="text-center">
+                        <a class="" href="#">Back</a>
+                        <a class="btn btn-primary" href="#" role="button">Submit</a>
                     </div>
-                <div class="text-center">
-                    <a class="" href="#">Back</a>
-                    <button type="submit" class="btn btn-success">Next</button>
-                </div>
-            </form>
-        </div>
-
-        <br><br><br>
-
-        <div class="container border border-dark" id="persona:detail">
-            <h4>What Does Art Mean To You?</h4>
-            <div class="container bg-info" id="live_score">
-                <p>user score</p>
-            </div>
-            <div class="container p-2 bg-light">
-                <p class="text-center">Tell us what you are looking for in an artwork.</p>
-            </div>
-            <div class="container">
-                <p class="text-left">Select any/all that apply:</p>
-            </div>
-            <form>
-                {% csrf_token %}
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="persona:lw-1">
-                    <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="persona:lw-1">
-                    <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="persona:lw-1">
-                    <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="persona:lw-1">
-                    <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="persona:lw-1">
-                    <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="persona:lw-1">
-                    <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="persona:lw-1">
-                    <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="persona:lw-1">
-                    <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="persona:lw-1">
-                    <label class="form-check-label" for="persona:lw-1">I am color/investment/story/price driven.</label>
-                </div>
-                <div class="text-center">
-                    <a class="" href="#">Back</a>
-                    <button type="submit" class="btn btn-success">Next</button>
-                    <a class="" href="#">(skip to the end)</a>
-                </div>
-            </form>
-        </div>
-
-        <br><br><br>
-
-        <div class="container border border-dark" id="search:detail-category">
-            <h4>Categories</h4>
-            <div class="container bg-info" id="live_score">
-                <p>user score</p>
-            </div>
-            <div class="container p-2 bg-light">
-                <p class="text-center">Are there categories of art you are NOT interested in seeing?</p>
-            </div>
-            <div class="container">
-                <p class="text-left">Select any/all that apply:</p>
-            </div>
-            <form>
-                {% csrf_token %}
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <div class="text-center">
-                    <a class="" href="#">Back</a>
-                    <button type="submit" class="btn btn-success">Next</button>
-                    <a class="" href="#">(skip to the end)</a>
-                </div>
-            </form>
-        </div>
-
-        <br><br><br>
-
-        <div class="container border border-dark" id="search:detail-subjects">
-            <h4>Subjects</h4>
-            <div class="container bg-info" id="live_score">
-                <p>user score</p>
-            </div>
-            <div class="container p-2 bg-light">
-                <p class="text-center">Which subjects are you most interested in?</p>
-            </div>
-            <div class="container">
-                <p class="text-left">Select any/all that apply:</p>
-            </div>
-            <form>
-                {% csrf_token %}
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <div class="text-center">
-                    <a class="" href="#">Back</a>
-                    <button type="submit" class="btn btn-success">Next</button>
-                    <a class="" href="#">(skip to the end)</a>
-                </div>
-            </form>
-        </div>
-
-        <br><br><br>
-
-        <div class="container border border-dark" id="search:detail-styles">
-            <h4>Styles</h4>
-            <div class="container bg-info" id="live_score">
-                <p>user score</p>
-            </div>
-            <div class="container p-2 bg-light">
-                <p class="text-center">What styles and qualities would you like to see?</p>
-            </div>
-            <div class="container">
-                <p class="text-left">Select any/all that apply:</p>
-            </div>
-            <form>
-                {% csrf_token %}
-                <div class="form-group row">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                </div>  
-                <div class="form-group row">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-                </div>
-                <div class="text-center">
-                    <a class="" href="#">Back</a>
-                    <button type="submit" class="btn btn-success">Next</button>
-                    <a class="" href="#">(skip to the end)</a>
-                </div>
-            </form>
+                </form>
+            </div> -->
         </div>
     </div>
 
-    <br><br><br>
-
-    <div class="container border border-dark" id="contact:detail">
-        <h4>Contact Details</h4>
-        <div class="container bg-info" id="live_score">
-            <p>user score</p>
-        </div>
-        <div class="container p-2 bg-light">
-            <p class="text-left">Please leave your budget and contact information below:</p>
-        </div>
-        <form>
-            {% csrf_token %}
-            <div class="form-group row">
-                <label for="art_url" class="col-sm-2 col-form-label">Budget (per artwork):</label>
-                <div class="col-sm-10 row">
-                    Min: $<input type="text" class="form-control w-25" id="contact:budget-min" placeholder="2,500">
-                    Max: $<input type="text" class="form-control w-25" id="contact:budget-max" placeholder="5,000">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="contact:first-name" class="col-sm-2 col-form-label">First Name:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control w-50" id="contact:first-name" placeholder="Veronice">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="contact:last-name" class="col-sm-2 col-form-label">Last Name:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control w-50" id="contact:last-name" placeholder="Lodge">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="contact:email" class="col-sm-2 col-form-label">Email Address:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control w-50" id="contact:email" placeholder="ronnie@riverdale.com">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="contact:phone" class="col-sm-2 col-form-label">Phone Number (optional):</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control w-50" id="contact:phone" placeholder="123-456-7890">
-                </div>
-            </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="contact:newsletter">
-                <label class="form-check-label" for="contact:newsletter">I do not want to subscribe to Saatchi Art's newsletter.</label>
-            </div>
-            <div class="text-center">
-                <a class="" href="#">Back</a>
-                <a class="btn btn-primary" href="#" role="button">Submit</a>
-            </div>
-        </form>
-    </div>
-
-    <br><br><br>
+        <br><br><br>
 
     <div class="container border border-dark" id="result:detail">
         <h4>Results</h4>
@@ -395,7 +402,24 @@
 
 </body>
 <script>
-    // Add the following code if you want the name of the file appear on select
+    // Transitions between quiz slides:
+    $('.quiznav').click(function(e){
+        e.preventDefault()
+        var data = $("form").serialize()
+        console.log(data)
+        $.ajax({
+            url:$(this).attr('href'),
+            method: 'post',
+            data: data,
+        })
+        .done(function(serverResponse){
+            console.log(serverResponse)
+            $('#quiz-container').html(serverResponse)
+        })
+    })
+
+
+    // Image Upload: Add the following code if you want the name of the file appear on select:
     $(".custom-file-input").on("change", function() {
       var fileName = $(this).val().split("\\").pop();
       $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
