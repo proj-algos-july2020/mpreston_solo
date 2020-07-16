@@ -26,7 +26,7 @@ def process_view(request):
         return redirect('quiz/view_y')
     else:
         return redirect('quiz/view_z')
-
+    # or, return redirect('quiz/next_view')
 '''
 
 

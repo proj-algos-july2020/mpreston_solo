@@ -34,8 +34,8 @@
 
         <div id="quiz-container">
 
-            <div class="container border border-dark" id="welcome">
-                <h4>Welcome</h4>
+            <div class="container" id="welcome-detail">
+                <h4 class="text-center">Welcome</h4>
                 <form action="/quiz/intent" method="POST">
                     {% csrf_token %}
                     <div class="container p-2 bg-light">
@@ -47,14 +47,45 @@
                 </form>
             </div>
 
+            <div class="container" id="intent-detail" hidden>
+                <h4>How Can We Help You?</h4>
+                <div class="container bg-info" id="live_score">
+                    <p>user score</p>
+                </div>
+                <form action="/quiz/intent/process" method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <div class="container p-2 bg-light">
+                            <label for="intent" class="text-left">Select the option that best applies to you:</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="intent" id="intent:air" value="info-request">
+                            <label class="form-check-label" for="intent:air">I have a question about an artwork I saw on Saatchi Art</label>
+                        </div> 
+                        <div class="form-check">   
+                            <input class="form-check-input" type="radio" name="intent" id="intent:specspace" value="spec-space">
+                            <label class="form-check-label" for="intent:specspace">I need help finding art for a specific space</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="intent" id="intent:inspo" value="inspo">
+                            <label class="form-check-label" for="intent:inspo">I am browsing for inspiration</label>
+                        </div>
+                    </fieldset>
+                    <a class="" href="/quiz">Back</a>
+                    <button type="submit" href="/quiz/intent/process" class="btn btn-success quiznav">Next</button>
+                </form>
+            </div>
+
         </div> <!-- end of quiz container -->
 
     </div> <!-- end of wrapper container -->
 
 </body>
 <script>
-    // Transitions between quiz slides:
-    $('.quiznav').click(function(e){
+
+    // Transitions between quiz slides: HTML snippet insertions
+
+    $(document).on('click', '.quiznav', function(e){
         e.preventDefault()
         var data = $("form").serialize()
         console.log(data)
@@ -66,7 +97,11 @@
         .done(function(serverResponse){
             console.log(serverResponse)
             $('#quiz-container').html(serverResponse)
-        })
+        });
+        // // Alternate transition option: HTML 1=pager,  Hide/Show slides
+            // insert instead of the .done(function(...))
+            // $(this).parentsUntil("div[id~='quiz-container']").hide();
+            // incomplete:    .show(); 
     })
 
 
