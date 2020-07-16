@@ -1,12 +1,12 @@
-<div class="container border border-dark" id="intent:detail">
-    <h4>How Can We Help You?</h4>
-    <div class="container bg-info" id="live_score">
-        <p>user score</p>
+<div class="container col-md-8 border" id="intent:detail">
+    <h4 class="text-center">How Can We Help You?</h4>
+    <div class="container text-right" id="live_score">
+        <p>User Score: <span class="badge badge-secondary bg-warning">{request.session.score}</span></p>
     </div>
-    <form action="/quiz/intent/process" method="POST">
+    <form action="/quiz/intent/process" method="POST"class="text-center">
         {% csrf_token %}
-        <fieldset class="form-group">
-            <div class="container p-2 bg-light">
+        <fieldset class="form-group text-left bg-light">
+            <div class="container p-2 bg-white">
                 <label for="intent" class="text-left">Select the option that best applies to you:</label>
             </div>
             <div class="form-check">

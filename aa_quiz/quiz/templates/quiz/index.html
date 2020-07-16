@@ -34,7 +34,7 @@
 
         <div id="quiz-container">
 
-            <div class="container" id="welcome-detail">
+            <div class="container col-md-8 border" id="welcome-detail">
                 <h4 class="text-center">Welcome</h4>
                 <form action="/quiz/intent" method="POST">
                     {% csrf_token %}
@@ -44,35 +44,6 @@
                     <div class="text-center">
                         <button type="submit" href="/quiz/intent" class="btn btn-success quiznav">Get Started</button>
                     </div>
-                </form>
-            </div>
-
-            <div class="container" id="intent-detail" hidden>
-                <h4>How Can We Help You?</h4>
-                <div class="container bg-info" id="live_score">
-                    <p>user score</p>
-                </div>
-                <form action="/quiz/intent/process" method="POST">
-                    {% csrf_token %}
-                    <fieldset class="form-group">
-                        <div class="container p-2 bg-light">
-                            <label for="intent" class="text-left">Select the option that best applies to you:</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="intent" id="intent:air" value="info-request">
-                            <label class="form-check-label" for="intent:air">I have a question about an artwork I saw on Saatchi Art</label>
-                        </div> 
-                        <div class="form-check">   
-                            <input class="form-check-input" type="radio" name="intent" id="intent:specspace" value="spec-space">
-                            <label class="form-check-label" for="intent:specspace">I need help finding art for a specific space</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="intent" id="intent:inspo" value="inspo">
-                            <label class="form-check-label" for="intent:inspo">I am browsing for inspiration</label>
-                        </div>
-                    </fieldset>
-                    <a class="" href="/quiz">Back</a>
-                    <button type="submit" href="/quiz/intent/process" class="btn btn-success quiznav">Next</button>
                 </form>
             </div>
 
@@ -103,7 +74,6 @@
             // $(this).parentsUntil("div[id~='quiz-container']").hide();
             // incomplete:    .show(); 
     })
-
 
     // Image Upload: Add the following code if you want the name of the file appear on select:
     $(".custom-file-input").on("change", function() {
