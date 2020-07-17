@@ -1,9 +1,9 @@
 <div class="container col-md-8 border" id="persona-detail">
-    <h4>What Does Art Mean To You?</h4>
+    <h4 class="text-center">What Does Art Mean To You?</h4>
     <div class="container text-right" id="live_score">
         <p>User Score <span class="badge badge-secondary bg-warning">{request.session.score}</span></p>
     </div>
-    <div class="container p-2 bg-light">
+    <div class="container">
         <p class="text-center">Tell us what you are looking for in an artwork.</p>
     </div>
     <div class="container">
@@ -11,41 +11,43 @@
     </div>
     <form action="/quiz/persona/process" method="POST">
         {% csrf_token %}
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="persona-lw-1">
-            <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="persona-lw-1">
-            <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="persona-lw-1">
-            <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="persona-lw-1">
-            <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="persona-lw-1">
-            <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="persona-lw-1">
-            <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="persona-lw-1">
-            <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="persona-lw-1">
-            <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="persona-lw-1">
-            <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
+        <div class="form-group bg-light">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="persona-lw-1">
+                <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="persona-lw-1">
+                <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="persona-lw-1">
+                <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="persona-lw-1">
+                <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="persona-lw-1">
+                <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="persona-lw-1">
+                <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="persona-lw-1">
+                <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="persona-lw-1">
+                <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="persona-lw-1">
+                <label class="form-check-label" for="persona-lw-1">I am color/investment/story/price driven.</label>
+            </div>
         </div>
         <div class="text-center">
             <a class="" href="#">Back</a>

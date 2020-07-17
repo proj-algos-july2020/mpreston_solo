@@ -1,9 +1,9 @@
 <div class="container col-md-8 border" id="search-detail-style">
-    <h4>Styles</h4>
+    <h4 class="text-center">Styles</h4>
     <div class="container text-right" id="live_score">
         <p>User Score <span class="badge badge-secondary bg-warning">{request.session.score}</span></p>
     </div>
-    <div class="container p-2 bg-light">
+    <div class="container">
         <p class="text-center">What styles and qualities would you like to see?</p>
     </div>
     <div class="container">
@@ -11,15 +11,15 @@
     </div>
     <form action="/quiz/style/process" method="POST">
         {% csrf_token %}
-        <div class="form-group row">
-        <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-        <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-        <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+        <div class="form-group bg-light">
+            <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+            <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+            <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
         </div>  
-        <div class="form-group row">
-        <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-        <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-        <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+        <div class="form-group bg-light">
+            <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+            <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+            <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
         </div>
         <div class="text-center">
             <a class="" href="#">Back</a>
