@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
-
+from leads.models import Lead
+from .models import Persona
 # Create your views here.
 
 ''' TEMPLATE FOR MAIN VIEWS: 
@@ -27,6 +28,7 @@ def process_view(request):
     else:
         return redirect('quiz/view_z')
     # or, return redirect('quiz/next_view')
+
 '''
 
 
@@ -65,7 +67,7 @@ def q_info_request(request):
 
 def process_info_request(request):
     # capture form results and store in sessions
-    request.session['art_url'] = request.POST['art-info-url']
+    request.session['art_info_url'] = request.POST['art-info-url']
     request.session['art_artist'] = request.POST['art-info-artist']
     request.session['art_title'] = request.POST['art-info-title']
     request.session['art_message'] = request.POST['art-info-message']
@@ -82,6 +84,10 @@ def q_spec_space(request):
 
 
 def process_spec_space(request):
+    request.session['num_works'] = request.POST['specspace-num-works']
+    request.session['specspace_message'] = request.POST['specspace-message']
+    # will need to handle multiple image upload:
+    request.session['images'] = request.POST['img_upload']
     return redirect('/quiz/persona')
 
 
@@ -127,10 +133,24 @@ def q_contact(request):
 
 
 def process_contact(request):
-    # capture form results and store in session
-  
+    # calculate persona score and intent score
+    persona = Persona.objects.create(persona_type="HIP ENTHUSIAST")
+    intent = 10
     # create new lead in DB
+    new_lead = Lead.objects.create(
+        first_name=request.POST['contact-first-name'],
+        last_name=request.POST['contact-last-name'],
+        email_address=request.POST['contact-email'],
+        phone_number=request.POST['contact-phone'],
+        budget_min=request.POST['contact-budget-min'],
+        budget_max=request.POST['contact-budget-max'],
+        newsletter_opt_out=request.POST['contact-newsletter'],
+        intent_score=intent,
+        persona_type=persona,
+        )
+    print(f'Lead created: {new_lead.first_name} {new_lead.last_name}')
 
+    # convert session data into json -- json.dumps()
     # redirect to q_results
     return redirect('/quiz/result')
 
