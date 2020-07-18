@@ -49,6 +49,12 @@ def q_intent(request):
 def process_intent(request):
     # capture form results and store in sessions
     request.session['intent'] = request.POST['intent']
+
+    # there are 2 slides that can be reached from different paths. Persona and Contact
+    # intent slide can reach persona therefore, create a "back" href value for the person 
+    # slide that brings the user back to the intent slide. 
+    request.session['persona_back'] = '/quiz/intent'
+
     print(request.session['intent'])
     # redirect to appropriate form
     if request.POST['intent'] == 'info-request':
@@ -96,6 +102,11 @@ def process_spec_space(request):
     request.session['num_works'] = request.POST['specspace-num-works']
     request.session['specspace_message'] = request.POST['specspace-message']
     
+    # there are 2 slides that can be reached from different paths. Persona and Contact
+    # intent slide can reach persona therefore, create a "back" href value for the person 
+    # slide that brings the user back to the intent slide. 
+    request.session['persona_back'] = '/quiz/spec_space'
+
     # will need to handle multiple image upload:
     # request.session['images'] = request.POST['img_upload']
     return redirect('/quiz/persona')
@@ -103,6 +114,13 @@ def process_spec_space(request):
 
 def q_persona(request):
     # render Persona form
+
+    # there are 2 slides that can be reached from different paths. Persona and Contact
+    # intent slide can reach persona therefore, create a "back" href value for the person 
+    # slide that brings the user back to the intent slide. 
+    request.session['contact_back'] = '/quiz/persona'
+    print(request.session['contact_back'])
+
     return render(request, 'quiz/snippets/persona.html')
 
 
@@ -139,6 +157,12 @@ def process_persona(request):
 
 def q_category(request):
     # render Category form
+
+    # there are 2 slides that can be reached from different paths. Persona and Contact
+    # intent slide can reach persona therefore, create a "back" href value for the person 
+    # slide that brings the user back to the intent slide. 
+    request.session['contact_back'] = '/quiz/category'
+
     return render(request, 'quiz/snippets/category.html')
 
 
@@ -147,11 +171,18 @@ def process_category(request):
     categories = request.POST.getlist('category')
     for category in categories:
         request.session['user_score'] += 2
+
     return redirect('/quiz/subject')
 
 
 def q_subject(request):
     # render Subject form
+
+    # there are 2 slides that can be reached from different paths. Persona and Contact
+    # intent slide can reach persona therefore, create a "back" href value for the person 
+    # slide that brings the user back to the intent slide. 
+    request.session['contact_back'] = '/quiz/subject'
+
     return render(request, 'quiz/snippets/subject.html')
 
 
@@ -165,6 +196,12 @@ def process_subject(request):
 
 def q_style(request):
     # render Style form
+
+    # there are 2 slides that can be reached from different paths. Persona and Contact
+    # intent slide can reach persona therefore, create a "back" href value for the person 
+    # slide that brings the user back to the intent slide. 
+    request.session['contact_back'] = '/quiz/style'
+
     return render(request, 'quiz/snippets/style.html')
 
 
@@ -173,6 +210,7 @@ def process_style(request):
     styles = request.POST.getlist('style')
     for style in styles:
         request.session['user_score'] += 2
+
     return redirect('/quiz/contact')
 
 

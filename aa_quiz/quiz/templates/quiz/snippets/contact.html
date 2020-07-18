@@ -50,7 +50,7 @@
             <div class="form-group form-inline">
                 <label class="col-sm-2 col-form-label">Budget (per artwork):</label>
                 
-                <label class="sr-only" for="budget_min">Min</label>
+                <label class="sr-only" for="contact-budget-min">Min</label>
                 <div class="input-group mb-2 mr-sm-2">
                 <div class="input-group-prepend">
                     <div class="input-group-text">$</div>
@@ -58,7 +58,7 @@
                 <input type="text" class="form-control" id="contact-budget-min" placeholder="Min">
                 </div>
 
-                <label class="sr-only" for="budget_max">Max</label>
+                <label class="sr-only" for="contact-budget-max">Max</label>
                 <div class="input-group mb-2 mr-sm-2">
                 <div class="input-group-prepend">
                     <div class="input-group-text">$</div>
@@ -98,7 +98,7 @@
             <label class="form-check-label" for="contact-newsletter">I want to subscribe to Saatchi Art's newsletter.</label>
         </div>
         <div class="text-center">
-            <a class="" href="#">Back</a>
+            <a class="quiznav" href="{{ request.session.contact_back }}">Back</a>
             <button type="submit" href="/quiz/contact/process" class="btn btn-success quiznav">Submit</button>
         </div>
     </form>
