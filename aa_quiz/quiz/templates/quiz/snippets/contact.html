@@ -1,3 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="quiz/templates/quiz/style.css"> -->
+    <title>Art Advisory Quiz</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Leads <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wrapper container">
+        <div class="mb-2 bg-light text-dark"1>
+            <p class="text-left">Get Help from Our Expert Curators</p>
+        </div>
+
+        <br><br>
+
+        <div id="quiz-container">
+
+
 <div class="container col-md-8 border" id="contact-detail">
     <h4 class="text-center">Contact Details</h4>
     <div class="container text-right" id="live_score">
@@ -9,20 +48,26 @@
     <form action="/quiz/contact/process" method="POST">
         {% csrf_token %}
         <div class="form-group bg-light">
-            <div class="col-sm-8">
-                <label for="art_url" class="col-form-label">Budget (per artwork):</label>
-                <div class="row form-inline">
-                    <div class="form-group">
-                        <label for="contact-budget-min" class="col-form-label">Min:$</label>
-                        <input type="text" class="form-control" name="contact-budget-min" placeholder="2,500">
-                    </div>
-                    <div class="form-group">
-                        <label for="contact-budget-max" class="col-form-label">Max:$</label>
-                        <input type="text" class="form-control" name="contact-budget-max" placeholder="5,000">
-                    </div>
-                    
+            <div class="form-group form-inline">
+                <label class="col-sm-2 col-form-label">Budget (per artwork):</label>
+                
+                <label class="sr-only" for="budget_min">Min</label>
+                <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">$</div>
+                </div>
+                <input type="text" class="form-control" id="contact-budget-min" placeholder="Min">
+                </div>
+
+                <label class="sr-only" for="budget_max">Max</label>
+                <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">$</div>
+                </div>
+                <input type="text" class="form-control" id="contact-budget-max" placeholder="Max">
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="art-info-artist" class="col-sm-2 col-form-label">First Name:</label>
                 <div class="col-sm-8">
