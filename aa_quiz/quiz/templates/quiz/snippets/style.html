@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,21 +44,55 @@
     <div class="container">
         <p class="text-center">What styles and qualities would you like to see?</p>
     </div>
-    <div class="container">
-        <p class="text-left">Select any/all that apply:</p>
-    </div>
     <form action="/quiz/style/process" method="POST">
         {% csrf_token %}
-        <div class="form-group bg-light">
-            <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-            <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-            <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-        </div>  
-        <div class="form-group bg-light">
-            <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-            <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
-            <img src="https://www.todayifoundout.com/wp-content/uploads/2016/04/mona-lisa.png" alt="Painting" width="100">
+        <div class="container">
+            <label class="text-left" for="category">Select any/all that apply:</label>
         </div>
+        <div class="form-group form-inline bg-light">
+
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="texture">
+                <label for="texture">
+                    <img src="{% static 'quiz/imgs/texture.jpg' %}" class="img-fluid" alt="An impasto painting of a beach." width="200">
+                </label>
+                <p class="text-center">Texture</p>
+            </div>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="neutral">
+                <label for="neutral">
+                    <img src="{% static 'quiz/imgs/neutral.jpg' %}" class="img-fluid" alt="A timelapse photograph of people walking by a sand colored building." width="200">
+                </label>
+                <p class="text-center">Neutral</p>
+            </div>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="pop">
+                <label for="pop">
+                    <img src="{% static 'quiz/imgs/pop.jpg' %}" class="img-fluid" alt="A charcoal drawing of two running horses." width="200">
+                </label>
+                <p class="text-center">Pop</p>
+            </div>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="graphic">
+                <label for="graphic">
+                    <img src="{% static 'quiz/imgs/graphic2.jpg' %}" class="img-fluid" alt="." width="200">
+                </label>
+                <p class="text-center">Graphic</p>
+            </div>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="bright">
+                <label for="bright">
+                    <img src="{% static 'quiz/imgs/bright2.jpg' %}" class="img-fluid" alt="An bright abstract painting with turquoise and pink." width="200">
+                </label>
+                <p class="text-center">Bright</p>
+            </div>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="minimalism">
+                <label for="minimalism">
+                    <img src="{% static 'quiz/imgs/minimalist1.jpg' %}" class="img-fluid" alt="" width="200">
+                </label>
+                <p class="text-center">Minimalism</p>
+            </div>
         <div class="text-center">
             <a class="" href="#">Back</a>
             <button type="submit" href="/quiz/style/process" class="btn btn-success quiznav">Next</button>
