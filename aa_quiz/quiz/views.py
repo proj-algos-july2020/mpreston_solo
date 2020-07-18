@@ -75,7 +75,7 @@ def process_info_request(request):
     request.session['art_title'] = request.POST['art-info-title']
     request.session['art_message'] = request.POST['art-info-message']
 
-    #score message lenght:
+    # score message lenght:
     if len(request.POST['art-info-message']) > 100:
         request.session['user_score'] += 25
     elif len(request.POST['art-info-message']) > 50:
@@ -98,7 +98,6 @@ def process_spec_space(request):
     
     # will need to handle multiple image upload:
     # request.session['images'] = request.POST['img_upload']
-
     return redirect('/quiz/persona')
 
 
@@ -111,7 +110,7 @@ def process_persona(request):
     living_well_count = 0
     hip_enthus_count = 0
     collector_count = 0
-    
+
     # tally persona results
     choices = request.POST.getlist('persona')
     for choice in choices:
@@ -124,7 +123,7 @@ def process_persona(request):
         else:  # if choice == he-co
             collector_count += 1
             hip_enthus_count += 1
-    
+
     # store persona data in session:
     request.session['living_well'] = living_well_count
     request.session['hip_enthus'] = hip_enthus_count
@@ -134,7 +133,7 @@ def process_persona(request):
     print(living_well_count)
     print(hip_enthus_count)
     print(collector_count)
-            
+  
     return redirect('/quiz/category')
 
 
