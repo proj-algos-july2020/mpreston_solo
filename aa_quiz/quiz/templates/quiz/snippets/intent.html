@@ -1,7 +1,7 @@
 <div class="container col-md-8 border" id="intent:detail">
     <h4 class="text-center">How Can We Help You?</h4>
     <div class="container text-right" id="live_score">
-        <p>User Score: <span class="badge badge-secondary bg-warning">{request.session.score}</span></p>
+        <p>User Score: <span class="badge badge-secondary bg-warning ">{{ request.session.user_score }}</span></p>
     </div>
     <form action="/quiz/intent/process" method="POST"class="text-center">
         {% csrf_token %}

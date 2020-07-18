@@ -33,17 +33,16 @@ def process_view(request):
 
 
 def q_welcome(request):
+    # flush previous session
+    request.session.flush()
+    # set new user score to 0
+    request.session['user_score'] = 0
     # Render the welcome slide for AA Quiz
-    request.session
     return render(request, 'quiz/index.html')
 
 
 def q_intent(request):
     # render Intent form
-    # context = {
-    #     'url_next': '/quiz/contact',
-    #     'url_back': '/quiz/welcome',
-    # }
     return render(request, 'quiz/snippets/intent.html')
 
 
@@ -53,10 +52,14 @@ def process_intent(request):
     print(request.session['intent'])
     # redirect to appropriate form
     if request.POST['intent'] == 'info-request':
+        request.session['user_score'] += 30
         return redirect('/quiz/info_request')
+
     elif request.POST['intent'] == 'spec-space':
+        request.session['user_score'] += 20
         return redirect('/quiz/spec_space')
     else:
+        request.session['user_score'] += 5
         return redirect('/quiz/persona')
 
 
@@ -71,10 +74,16 @@ def process_info_request(request):
     request.session['art_artist'] = request.POST['art-info-artist']
     request.session['art_title'] = request.POST['art-info-title']
     request.session['art_message'] = request.POST['art-info-message']
-    for item in request.session.items():
-        print(item)
+
+    #score message lenght:
+    if len(request.POST['art-info-message']) > 100:
+        request.session['user_score'] += 25
+    elif len(request.POST['art-info-message']) > 50:
+        request.session['user_score'] += 15
+    else: 
+        request.session['user_score'] += 0
+
     # redirect to next form
-    # conditionals
     return redirect('/quiz/contact')
 
 
@@ -86,8 +95,10 @@ def q_spec_space(request):
 def process_spec_space(request):
     request.session['num_works'] = request.POST['specspace-num-works']
     request.session['specspace_message'] = request.POST['specspace-message']
+    
     # will need to handle multiple image upload:
-    request.session['images'] = request.POST['img_upload']
+    # request.session['images'] = request.POST['img_upload']
+
     return redirect('/quiz/persona')
 
 
@@ -97,6 +108,33 @@ def q_persona(request):
 
 
 def process_persona(request):
+    living_well_count = 0
+    hip_enthus_count = 0
+    collector_count = 0
+    
+    # tally persona results
+    choices = request.POST.getlist('persona')
+    for choice in choices:
+        if choice == 'lw':
+            living_well_count += 1
+        elif choice == 'co':
+            collector_count += 1
+        elif choice == 'he':
+            hip_enthus_count += 1
+        else:  # if choice == he-co
+            collector_count += 1
+            hip_enthus_count += 1
+    
+    # store persona data in session:
+    request.session['living_well'] = living_well_count
+    request.session['hip_enthus'] = hip_enthus_count
+    request.session['collector'] = collector_count
+
+    print(choices)
+    print(living_well_count)
+    print(hip_enthus_count)
+    print(collector_count)
+            
     return redirect('/quiz/category')
 
 
@@ -106,6 +144,10 @@ def q_category(request):
 
 
 def process_category(request):
+    # increase score (minimally) for each question answered
+    categories = request.POST.getlist('category')
+    for category in categories:
+        request.session['user_score'] += 2
     return redirect('/quiz/subject')
 
 
@@ -115,6 +157,10 @@ def q_subject(request):
 
 
 def process_subject(request):
+    # increase score (minimally) for each question answered
+    subjects = request.POST.getlist('subject')
+    for subject in subjects:
+        request.session['user_score'] += 2
     return redirect('/quiz/style')
 
 
@@ -124,6 +170,10 @@ def q_style(request):
 
 
 def process_style(request):
+    # increase score (minimally) for each question answered
+    styles = request.POST.getlist('style')
+    for style in styles:
+        request.session['user_score'] += 2
     return redirect('/quiz/contact')
 
 

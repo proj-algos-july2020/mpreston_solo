@@ -1,7 +1,7 @@
 <div class="container col-md-8 border" id="contact-detail">
     <h4 class="text-center">Contact Details</h4>
     <div class="container text-right" id="live_score">
-        <p>User Score <span class="badge badge-secondary bg-warning">{request.session.score}</span></p>
+        <p>User Score: <span class="badge badge-secondary bg-warning ">{{ request.session.user_score }}</span></p>
     </div>
     <div class="container">
         <p class="text-left">Please leave your budget and contact information below:</p>

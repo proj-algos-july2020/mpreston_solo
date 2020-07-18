@@ -1,7 +1,7 @@
 <div class="container col-md-8 border" id="search-detail-subject">
     <h4 class="text-center">Subjects</h4>
     <div class="container text-right" id="live_score">
-        <p>User Score <span class="badge badge-secondary bg-warning">{request.session.score}</span></p>
+        <p>User Score: <span class="badge badge-secondary bg-warning ">{{ request.session.user_score }}</span></p>
     </div>
     <div class="container">
         <p class="text-center">Which subjects are you most interested in?</p>
