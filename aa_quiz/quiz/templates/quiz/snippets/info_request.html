@@ -8,7 +8,7 @@
     </div>
     <form action="/quiz/info_request/process" method="POST">
         {% csrf_token %}
-        <div class="form-group bg-light">
+        <div class="form-group col bg-light">
             <div class="form-group row">
                 <label for="art-info-url" class="col-sm-2 col-form-label">Artwork URL:</label>
                 <div class="col-sm-8">
@@ -34,6 +34,7 @@
                 <div class="col-sm-8">
                     <textarea class="form-control" name="art-info-message" rows="3" placeholder="Please enter your question here."></textarea>
                 </div>
+            </div>
         </div>
         <div class="text-center">
             <a class="" href="/quiz/intent">Back</a>
