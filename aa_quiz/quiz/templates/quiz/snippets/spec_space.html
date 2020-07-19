@@ -1,12 +1,12 @@
 <div class="container col-md-8 border" id="specspace-detail">
     <h4 class="text-center">Tell Us About Your Space</h4>
     <div class="container text-right" id="live_score">
-        <p>User Score <span class="badge badge-secondary bg-warning">{request.session.score}</span></p>
+        <p>User Score <span class="badge badge-secondary bg-warning">{{ request.session.user_score }}</span></p>
     </div>
     <div class="container p-2">
         <p class="text-center">Please uploade some images of your home and the wall(s) where you intend to hang art. Provide dimensions and any other information our curators should consider when putting together suggestions for you.</p>
     </div>
-    <form action="/quiz/spec_space/process" method="POST">
+    <form action="/quiz/spec_space/process" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group col bg-light">
             <div class="form-group row">
@@ -18,15 +18,12 @@
             <div class="form-group row">
                 <label for="specspace-message" class="col-sm-2 col-form-label">Message:</label>
                 <div class="col-sm-8">
-                    <textarea class="form-control" name="specspace-message" rows="3" placeholder="Please enter your question here."></textarea>
+                    <textarea class="form-control" name="specspace-message" rows="3" placeholder="Looking for artwork for above the sofa. Ideally around 48 inches squared."></textarea>
                 </div>
             </div>
-            <div class="form-group form-inline-row custom-file">
-                <p>Upload Photos:</p>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input mb-2 mr-sm-2" name="img-upload">
-                    <label class="custom-file-label mb-2 mr-sm-2" for="img-upload">Choose file</label>
-                </div>
+            <div class="form-group form-inline-row">
+                <label for="img_upload">Please upload photos of your space:</label>
+                <input type="file" id="img_upload" name="img_upload">
             </div>
         </div>
         <div class="text-center">

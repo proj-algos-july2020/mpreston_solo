@@ -1,4 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
+import json
+from django.core.files.storage import FileSystemStorage
 from leads.models import Lead
 from .models import Persona
 # Create your views here.
@@ -53,7 +55,7 @@ def process_intent(request):
     # there are 2 slides that can be reached from different paths. Persona and Contact
     # intent slide can reach persona therefore, create a "back" href value for the person 
     # slide that brings the user back to the intent slide. 
-    request.session['persona_back'] = '/quiz/intent'
+    request.session['persona_referer'] = '/quiz/intent'
 
     print(request.session['intent'])
     # redirect to appropriate form
@@ -89,6 +91,9 @@ def process_info_request(request):
     else: 
         request.session['user_score'] += 0
 
+    
+
+
     # redirect to next form
     return redirect('/quiz/contact')
 
@@ -101,11 +106,11 @@ def q_spec_space(request):
 def process_spec_space(request):
     request.session['num_works'] = request.POST['specspace-num-works']
     request.session['specspace_message'] = request.POST['specspace-message']
-    
+
     # there are 2 slides that can be reached from different paths. Persona and Contact
     # intent slide can reach persona therefore, create a "back" href value for the person 
     # slide that brings the user back to the intent slide. 
-    request.session['persona_back'] = '/quiz/spec_space'
+    request.session['persona_referer'] = '/quiz/spec_space'
 
     # will need to handle multiple image upload:
     # request.session['images'] = request.POST['img_upload']
@@ -118,8 +123,8 @@ def q_persona(request):
     # there are 2 slides that can be reached from different paths. Persona and Contact
     # intent slide can reach persona therefore, create a "back" href value for the person 
     # slide that brings the user back to the intent slide. 
-    request.session['contact_back'] = '/quiz/persona'
-    print(request.session['contact_back'])
+    request.session['contact_referer'] = '/quiz/persona'
+    print(request.session['contact_referer'])
 
     return render(request, 'quiz/snippets/persona.html')
 
@@ -161,7 +166,7 @@ def q_category(request):
     # there are 2 slides that can be reached from different paths. Persona and Contact
     # intent slide can reach persona therefore, create a "back" href value for the person 
     # slide that brings the user back to the intent slide. 
-    request.session['contact_back'] = '/quiz/category'
+    request.session['contact_referer'] = '/quiz/category'
 
     return render(request, 'quiz/snippets/category.html')
 
@@ -181,7 +186,7 @@ def q_subject(request):
     # there are 2 slides that can be reached from different paths. Persona and Contact
     # intent slide can reach persona therefore, create a "back" href value for the person 
     # slide that brings the user back to the intent slide. 
-    request.session['contact_back'] = '/quiz/subject'
+    request.session['contact_referer'] = '/quiz/subject'
 
     return render(request, 'quiz/snippets/subject.html')
 
@@ -200,7 +205,7 @@ def q_style(request):
     # there are 2 slides that can be reached from different paths. Persona and Contact
     # intent slide can reach persona therefore, create a "back" href value for the person 
     # slide that brings the user back to the intent slide. 
-    request.session['contact_back'] = '/quiz/style'
+    request.session['contact_referer'] = '/quiz/style'
 
     return render(request, 'quiz/snippets/style.html')
 
@@ -222,7 +227,21 @@ def q_contact(request):
 def process_contact(request):
     # calculate persona score and intent score
     persona = Persona.objects.create(persona_type="HIP ENTHUSIAST")
-    intent = 10
+    intent = request.session['user_score']
+
+    # convert session data into json -- json.dumps()
+    session = (request.session)
+    print(session)
+
+    # get image files, if any:
+    if request.FILES:
+        image = request.FILES['img_upload']
+        fs = FileSystemStorage()
+        fs.save(image.name, image)
+        print(image.name)
+    else:
+        image = ''
+
     # create new lead in DB
     new_lead = Lead.objects.create(
         first_name=request.POST['contact-first-name'],
@@ -231,13 +250,13 @@ def process_contact(request):
         phone_number=request.POST['contact-phone'],
         budget_min=request.POST['contact-budget-min'],
         budget_max=request.POST['contact-budget-max'],
+        images=image,
         newsletter_opt_out=request.POST['contact-newsletter'],
         intent_score=intent,
         persona_type=persona,
         )
-    print(f'Lead created: {new_lead.first_name} {new_lead.last_name}')
+    print(f'Lead created: {new_lead.first_name} {new_lead.last_name}')   
 
-    # convert session data into json -- json.dumps()
     # redirect to q_results
     return redirect('/quiz/result')
 

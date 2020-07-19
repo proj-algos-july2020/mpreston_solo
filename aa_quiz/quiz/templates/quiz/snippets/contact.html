@@ -1,4 +1,4 @@
-<!-- {% load static %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +33,7 @@
 
         <br><br>
 
-        <div id="quiz-container"> -->
+        <div id="quiz-container">
 
 
 <div class="container col-md-8 border" id="contact-detail">
@@ -48,14 +48,14 @@
         {% csrf_token %}
         <div class="form-group bg-light">
             <div class="form-group form-inline">
-                <label class="col-sm-2 col-form-label">Budget (per artwork):</label>
+                <p class="col-sm-2 col-form-label">Budget (per artwork):</p>
                 
                 <label class="sr-only" for="contact-budget-min">Min</label>
                 <div class="input-group mb-2 mr-sm-2">
                 <div class="input-group-prepend">
                     <div class="input-group-text">$</div>
                 </div>
-                <input type="text" class="form-control" id="contact-budget-min" placeholder="Min">
+                <input type="text" class="form-control" name="contact-budget-min" placeholder="Min">
                 </div>
 
                 <label class="sr-only" for="contact-budget-max">Max</label>
@@ -63,7 +63,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">$</div>
                 </div>
-                <input type="text" class="form-control" id="contact-budget-max" placeholder="Max">
+                <input type="text" class="form-control" name="contact-budget-max" placeholder="Max">
                 </div>
             </div>
             <div class="col">
@@ -98,7 +98,7 @@
             <label class="form-check-label" for="contact-newsletter">I want to subscribe to Saatchi Art's newsletter.</label>
         </div>
         <div class="text-center">
-            <a class="quiznav" href="{{ request.session.contact_back }}">Back</a>
+            <a class="quiznav" href="{{ request.session.contact_referer }}">Back</a>
             <button type="submit" href="/quiz/contact/process" class="btn btn-success quiznav">Submit</button>
         </div>
     </form>

@@ -59,26 +59,26 @@
 </body>
 <script>
 
-    // Transitions between quiz slides: HTML snippet insertions
+    // // Transitions between quiz slides: HTML snippet insertions
 
-    $(document).on('click', '.quiznav', function(e){
-        e.preventDefault()
-        var data = $("form").serialize()
-        console.log(data)
-        $.ajax({
-            url:$(this).attr('href'),
-            method: 'post',
-            data: data,
-        })
-        .done(function(serverResponse){
-            console.log(serverResponse)
-            $('#quiz-container').html(serverResponse)
-        });
-        // // Alternate transition option: HTML 1=pager,  Hide/Show slides
-            // insert instead of the .done(function(...))
-            // $(this).parentsUntil("div[id~='quiz-container']").hide();
-            // incomplete:    .show(); 
-    })
+    // $(document).on('click', '.quiznav', function(e){
+    //     e.preventDefault()
+    //     var data = $("form").serialize()
+    //     console.log(data)
+    //     $.ajax({
+    //         url:$(this).attr('href'),
+    //         method: 'post',
+    //         data: data,
+    //     })
+    //     .done(function(serverResponse){
+    //         console.log(serverResponse)
+    //         $('#quiz-container').html(serverResponse)
+    //     });
+    //     // // Alternate transition option: HTML 1=pager,  Hide/Show slides
+    //         // insert instead of the .done(function(...))
+    //         // $(this).parentsUntil("div[id~='quiz-container']").hide();
+    //         // incomplete:    .show(); 
+    // })
 
     // Image Upload: Add the following code if you want the name of the file appear on select:
     $(".custom-file-input").on("change", function() {
