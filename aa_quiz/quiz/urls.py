@@ -17,6 +17,8 @@ urlpatterns = [
    path('subject/process', views.process_subject),
    path('style', views.q_style),
    path('style/process', views.process_style),
+   path('size', views.q_size),
+   path('size/process', views.process_size),
    path('contact', views.q_contact),
    path('contact/process', views.process_contact),
    path('result', views.q_result),

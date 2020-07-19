@@ -35,34 +35,25 @@ def process_view(request):
 
 
 def q_welcome(request):
-    # flush previous session
+    # render Welcome slide, flush sessions, reset user score
     request.session.flush()
-    # set new user score to 0
     request.session['user_score'] = 0
-    # Render the welcome slide for AA Quiz
     return render(request, 'quiz/index.html')
 
 
 def q_intent(request):
-    # render Intent form
+    # render Intent form and store 'referer'
+    request.session['persona_referer'] = '/quiz/intent'
     return render(request, 'quiz/snippets/intent.html')
 
 
 def process_intent(request):
     # capture form results and store in sessions
     request.session['intent'] = request.POST['intent']
-
-    # there are 2 slides that can be reached from different paths. Persona and Contact
-    # intent slide can reach persona therefore, create a "back" href value for the person 
-    # slide that brings the user back to the intent slide. 
-    request.session['persona_referer'] = '/quiz/intent'
-
-    print(request.session['intent'])
     # redirect to appropriate form
     if request.POST['intent'] == 'info-request':
         request.session['user_score'] += 30
         return redirect('/quiz/info_request')
-
     elif request.POST['intent'] == 'spec-space':
         request.session['user_score'] += 20
         return redirect('/quiz/spec_space')
@@ -72,7 +63,8 @@ def process_intent(request):
 
 
 def q_info_request(request):
-    # render Artwork Information Request form
+    # render Artwork Info Request form and store 'referer'
+    request.session['contact_referer'] = '/quiz/info_request'
     return render(request, 'quiz/snippets/info_request.html')
 
 
@@ -83,130 +75,96 @@ def process_info_request(request):
     request.session['art_title'] = request.POST['art-info-title']
     request.session['art_message'] = request.POST['art-info-message']
 
-    # score message lenght:
+    # score message length:
     if len(request.POST['art-info-message']) > 100:
         request.session['user_score'] += 25
     elif len(request.POST['art-info-message']) > 50:
         request.session['user_score'] += 15
     else: 
         request.session['user_score'] += 0
-
-    
-
-
     # redirect to next form
     return redirect('/quiz/contact')
 
 
 def q_spec_space(request):
-    # render Specific Space form
+    # render Specific Space form and store 'referer'
+    request.session['persona_referer'] = '/quiz/spec_space'
     return render(request, 'quiz/snippets/spec_space.html')
 
 
 def process_spec_space(request):
     request.session['num_works'] = request.POST['specspace-num-works']
     request.session['specspace_message'] = request.POST['specspace-message']
-
-    # there are 2 slides that can be reached from different paths. Persona and Contact
-    # intent slide can reach persona therefore, create a "back" href value for the person 
-    # slide that brings the user back to the intent slide. 
-    request.session['persona_referer'] = '/quiz/spec_space'
-
-    # will need to handle multiple image upload:
-    # request.session['images'] = request.POST['img_upload']
+    # note: uploaded images are saved to DB in views.process_contact
     return redirect('/quiz/persona')
 
 
 def q_persona(request):
-    # render Persona form
-
-    # there are 2 slides that can be reached from different paths. Persona and Contact
-    # intent slide can reach persona therefore, create a "back" href value for the person 
-    # slide that brings the user back to the intent slide. 
+    # render Persona form and store 'referer'
     request.session['contact_referer'] = '/quiz/persona'
-    print(request.session['contact_referer'])
-
     return render(request, 'quiz/snippets/persona.html')
 
 
 def process_persona(request):
-    living_well_count = 0
-    hip_enthus_count = 0
-    collector_count = 0
+    # reset persona counters
+    lw_count = 0
+    he_count = 0
+    co_count = 0
 
     # tally persona results
     choices = request.POST.getlist('persona')
     for choice in choices:
         if choice == 'lw':
-            living_well_count += 1
+            lw_count += 1
         elif choice == 'co':
-            collector_count += 1
+            co_count += 1
         elif choice == 'he':
-            hip_enthus_count += 1
+            he_count += 1
         else:  # if choice == he-co
-            collector_count += 1
-            hip_enthus_count += 1
+            co_count += 1
+            he_count += 1
 
-    # store persona data in session:
-    request.session['living_well'] = living_well_count
-    request.session['hip_enthus'] = hip_enthus_count
-    request.session['collector'] = collector_count
-
-    print(choices)
-    print(living_well_count)
-    print(hip_enthus_count)
-    print(collector_count)
-  
+    # store counts in session:
+    request.session['lw_count'] = lw_count
+    request.session['he_count'] = he_count
+    request.session['co_count'] = co_count
     return redirect('/quiz/category')
 
 
 def q_category(request):
-    # render Category form
-
-    # there are 2 slides that can be reached from different paths. Persona and Contact
-    # intent slide can reach persona therefore, create a "back" href value for the person 
-    # slide that brings the user back to the intent slide. 
+    # render Category form and store 'referer'
     request.session['contact_referer'] = '/quiz/category'
-
     return render(request, 'quiz/snippets/category.html')
 
 
 def process_category(request):
-    # increase score (minimally) for each question answered
-    categories = request.POST.getlist('category')
-    for category in categories:
+    # process form data
+    # score points for each question answered
+    request.session['categories'] = request.POST.getlist('category')
+    for category in request.session['categories']:
         request.session['user_score'] += 2
-
+    print(request.session['categories'])
     return redirect('/quiz/subject')
 
 
 def q_subject(request):
-    # render Subject form
-
-    # there are 2 slides that can be reached from different paths. Persona and Contact
-    # intent slide can reach persona therefore, create a "back" href value for the person 
-    # slide that brings the user back to the intent slide. 
+    # render Subject form and store 'referer'
     request.session['contact_referer'] = '/quiz/subject'
-
     return render(request, 'quiz/snippets/subject.html')
 
 
 def process_subject(request):
-    # increase score (minimally) for each question answered
-    subjects = request.POST.getlist('subject')
-    for subject in subjects:
+    # process form data
+    # score points for each question answered
+    request.session['subjects'] = request.POST.getlist('subject')
+    for subject in request.session['subjects']:
         request.session['user_score'] += 2
     return redirect('/quiz/style')
 
 
 def q_style(request):
-    # render Style form
-
-    # there are 2 slides that can be reached from different paths. Persona and Contact
-    # intent slide can reach persona therefore, create a "back" href value for the person 
-    # slide that brings the user back to the intent slide. 
+    # render Style form and store 'referer'
     request.session['contact_referer'] = '/quiz/style'
-
     return render(request, 'quiz/snippets/style.html')
 
 
@@ -214,6 +172,21 @@ def process_style(request):
     # increase score (minimally) for each question answered
     styles = request.POST.getlist('style')
     for style in styles:
+        request.session['user_score'] += 2
+
+    return redirect('/quiz/size')
+
+
+def q_size(request):
+    # render Style form and store 'referer'
+    request.session['contact_referer'] = '/quiz/size'
+    return render(request, 'quiz/snippets/size.html')
+
+
+def process_size(request):
+    # increase score (minimally) for each question answered
+    sizes = request.POST.getlist('size')
+    for size in sizes:
         request.session['user_score'] += 2
 
     return redirect('/quiz/contact')
@@ -226,6 +199,9 @@ def q_contact(request):
 
 def process_contact(request):
     # calculate persona score and intent score
+
+
+
     persona = Persona.objects.create(persona_type="HIP ENTHUSIAST")
     intent = request.session['user_score']
 
