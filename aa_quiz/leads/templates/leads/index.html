@@ -5,10 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Leads</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        {% load static %}
     </head>
     <body>
-        <div class="wrapper container">
+        <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <span class="navbar-text"><a class="btn btn-sm border-primary btn-light text-dark" href="/leads" role="button">Leads</a></span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -34,45 +35,8 @@
                 <div class="container">
                     <h2 class="display-5">Your Leads</h2>
                 </div>
-                <br><hr><br>
-                <div class="container">
-                    <form class="form_group" action="/leadsearch" method="GET" id="lead_search">
-                        {% csrf_token %}
-                        <h5>Apply Filters:</h5>
-                        <div class="form-group">
-                            <label for="fname">First Name:</label>
-                            <input type="text" name="fname" id="fname">
-                            <label for="lname">Last Name:</label>
-                            <input type="text" name="lname" id="lname">
-                            <label for="date_min">From:</label>
-                            <input type="date" name="date_min" id="date_min">
-                            <label for="date_max">To:</label>
-                            <input type="date" name="date_max" id="date_max" value="">
-                            <!-- <button type="submit" value="Search">Submit</button> -->
-                        </div>
-                    </form>
-                </div>
         
-                <div class="container" id="results">
-                    <div class="col p-4 m-1">
-                        <div class="pagination row justify-content-end" id="pages">
-                            <span class="step-links">
-                                {% if page_obj.has_previous %}
-                                    <a href="?page=1">&laquo;</a>
-                                    <a href="?page/{{ page_obj.previous_page_number }}">prev</a>
-                                {% endif %}
-                        
-                                <span class="current">
-                                    Page {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
-                                </span>
-                        
-                                {% if page_obj.has_next %}
-                                    <a href="?page={{ page_obj.next_page_number }}">next</a>
-                                    <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
-                                {% endif %}
-                            </span>
-                        </div>
-        
+                <div class="container" id="results">      
                         
                         <table class="table">
                             <th scope="col">Lead ID</th>
@@ -84,13 +48,13 @@
                             <th scope="col">Date Created</th>
                             {% for lead in all_leads %}
                             <tr>
-                                <td><a href="leads/detail/">{{ lead.id }}</a></td>
-                                <td><a href="leads/detail">{{ lead.first_name }}</a></td>
-                                <td><a href="leads/detail">{{ lead.last_name }}</a></td>
-                                <td><a href="leads/detail">{{ lead.email }}</a></td>
-                                <td><a href="leads/detail">{{ lead.intent_score }}</a></td>
-                                <td><a href="leads/detail">{{ lead.persona_type }}</a></td>
-                                <td><a href="leads/detail">{{ lead.created_at }}</a></td>
+                                <td><a href="/leads/detail/{{lead.id}}">{{ lead.id }}</a></td>
+                                <td><a href="/leads/detail/{{lead.id}}">{{ lead.first_name }}</a></td>
+                                <td><a href="/leads/detail/{{lead.id}}">{{ lead.last_name }}</a></td>
+                                <td><a href="/leads/detail/{{lead.id}}">{{ lead.email_address }}</a></td>
+                                <td><a href="/leads/detail/{{lead.id}}">{{ lead.intent_score }}</a></td>
+                                <td><a href="/leads/detail/{{lead.id}}">{{ lead.persona_type }}</a></td>
+                                <td><a href="/leads/detail/{{lead.id}}">{{ lead.created_at }}</a></td>
                             </tr>
                             {% endfor %}
                         </table>
@@ -98,43 +62,6 @@
                 </div>
             </div>
         
-           <script>
-               // set default search dates
-                    //NOTES:
-                    //var d = new Date(2018, 11, 24, 10, 33, 30, 0); --> Y, M, D, h, m, s, ms
-                    //JavaScript counts months from 0 to 11: 0 = January, 11 = December
-        
-                document.getElementById('date_min').valueAsDate = new Date(2020, 0, 1);
-                document.getElementById('date_max').valueAsDate = new Date();
-                
-               // ajax pagination
-                $('#pages').on('click', 'a', function(e){
-                    e.preventDefault()
-                    $.ajax({
-                        url: $(this).attr('href'),
-                        method: 'get',
-                        success: function(serverResponse){
-                            $('#wrapper').html(serverResponse)
-                        }
-                    })
-                });
-            
-                // ajax search
-                $(this).keyup(function(){
-                    var data = $('#lead_search').serialize() //capture form data
-                    $.ajax({
-                        method: 'GET',
-                        url: 'leadsearch',
-                        data: data,
-                    })
-                    .done(function(serverResponse){
-                        console.log(serverResponse)
-                        $('#results').html(serverResponse)
-                    });
-                });
-        
-        
-           </script>
         </body>
         
         </html>
