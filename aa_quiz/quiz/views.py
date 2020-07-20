@@ -194,19 +194,29 @@ def process_persona(request):
             co_count += 1
             he_count += 1
     
-    # store counts in session:
-    request.session['lw_count'] = lw_count
-    request.session['he_count'] = he_count
-    request.session['co_count'] = co_count
+    # store counts in session for plotting:
+    p_score = {
+        'LW': lw_count,
+        'HE': he_count,
+        'CO': co_count,
+        }
+    request.session['p_scores'] = p_score
 
-    # #x-axis values:
-    # x = []
-    # y = []
+    # find max values to determine earned persona:
+    max_val = max(p_score.values())
+    max_keys = [k for k, v in p_score.items() if v == max_val]
+    print(max_keys, max_val)
 
-
-
-
-
+    persona_list = []
+    if 'HE' in max_keys:
+        persona_list.append('HIP ENTHUSIAST')
+    if 'CO' in max_keys:
+        persona_list.append('COLLECTOR')
+    if 'LW' in max_keys:
+        persona_list.append('LIVING WELL')
+    print(persona_list)
+    
+    request.session['persona_list'] = persona_list
 
     return redirect('/quiz/category')
 
@@ -250,8 +260,8 @@ def q_style(request):
 
 def process_style(request):
     # increase score (minimally) for each question answered
-    styles = request.POST.getlist('style')
-    for style in styles:
+    request.session['styles'] = request.POST.getlist('style')
+    for style in request.session['styles']:
         request.session['user_score'] += 2
 
     return redirect('/quiz/size')
@@ -265,8 +275,8 @@ def q_size(request):
 
 def process_size(request):
     # increase score (minimally) for each question answered
-    sizes = request.POST.getlist('size')
-    for size in sizes:
+    request.session['sizes'] = request.POST.getlist('size')
+    for size in request.session['sizes']:
         request.session['user_score'] += 2
 
     return redirect('/quiz/contact')
@@ -289,7 +299,9 @@ def process_contact(request):
 
     else:
         # calculate persona score and intent score
-        persona = Persona.objects.create(persona_type="HIP ENTHUSIAST")
+        persona = Persona.objects.create(
+            persona_type=request.session['persona_list']
+            )
         intent = request.session['user_score']
 
         # convert session data into json -- json.dumps()
@@ -317,11 +329,14 @@ def process_contact(request):
             budget_max=request.POST['contact-budget-max'],
             images=image,
             quiz_brief=brief,
-            newsletter_opt_out=request.POST['contact-newsletter'],
+            newsletter_opt_in=request.POST['contact-newsletter'],
             intent_score=intent,
             persona_type=persona,
             )
-        print(f'Lead created: {new_lead.first_name} {new_lead.last_name}')   
+        print(f'Lead created: {new_lead.first_name} {new_lead.last_name}')
+
+        request.session['id'] = new_lead.id
+        request.session['persona'] = new_lead.persona
 
     # redirect to q_results
     return redirect('/quiz/result')
