@@ -61,17 +61,33 @@
                         <th scope="row">Budget:</th>
                         <td><a href="#">${{ lead.budget_min }} - ${{lead.budget_max}}</a></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Phone</th>
-                        <td><a href="#">{{ lead.phone_number }}</a></td>
-                    </tr>
                 </table>
 
+                <h5>Quiz Brief:</h5>
+                {% for item in brief.items %}
+                <ul>
+                    <li>{{ item }}</li>
+                </ul>
+                {% endfor %}
+
+                <!-- <table class="table table-bordered table-striped">
+                    <h5>Quiz Brief</h5>
+                    {% for key, values in brief.items %}
+                        <tr>
+                            <th scope="row">{{ key }}:</th>
+                            {% for value in values.items %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table> -->
+
                 <div>
-                    <p>Client Images</p>
+                    <br>
+                    <p>Client Images:</p>
                     {% if images %}
                         {% for image in lead.images %}
-                            <img src="{{ image.lead.images.url }}" alt="">
+                            <img src="{{ image.url }}" alt="">
                         {% endfor %}
                     {% endif %}
                 </div>
