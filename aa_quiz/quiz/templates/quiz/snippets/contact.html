@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +33,7 @@
 
         <br><br>
 
-        <div id="quiz-container">
+        <div id="quiz-container"> -->
 
 
 <div class="container col-md-8 border" id="contact-detail">
@@ -44,28 +44,19 @@
     <div class="container">
         <p class="text-left">Please leave your budget and contact information below:</p>
     </div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> 
+        {% endfor %}
+    </ul>
+        {% endif %}
+
     <form action="/quiz/contact/process" method="POST">
         {% csrf_token %}
         <div class="form-group bg-light">
-            <div class="form-group form-inline">
-                <p class="col-sm-2 col-form-label">Budget (per artwork):</p>
-                
-                <label class="sr-only" for="contact-budget-min">Min</label>
-                <div class="input-group mb-2 mr-sm-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">$</div>
-                </div>
-                <input type="text" class="form-control" name="contact-budget-min" placeholder="Min">
-                </div>
-
-                <label class="sr-only" for="contact-budget-max">Max</label>
-                <div class="input-group mb-2 mr-sm-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">$</div>
-                </div>
-                <input type="text" class="form-control" name="contact-budget-max" placeholder="Max">
-                </div>
-            </div>
+    
             <div class="col">
                 <div class="form-group row">
                     <label for="art-info-artist" class="col-sm-2 col-form-label">First Name:</label>
@@ -82,16 +73,37 @@
                 <div class="form-group row">
                     <label for="art-info-artist" class="col-sm-2 col-form-label">Email:</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="contact-email" placeholder="archie@riverdale.com">
+                        <input type="email" class="form-control" name="contact-email" placeholder="archie@riverdale.com">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="art-info-artist" class="col-sm-2 col-form-label">Phone (optional):</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="contact-phone" placeholder="555-555-5555">
+                        <input type="tel" class="form-control" name="contact-phone" placeholder="555-555-5555">
                     </div>
                 </div>
             </div>
+
+            <div class="form-group form-inline">
+                <p class="col-sm-2 col-form-label">Budget:</p>
+                
+                <label class="sr-only" for="contact-budget-min">Min</label>
+                <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">$</div>
+                </div>
+                <input type="number" class="form-control" name="contact-budget-min" placeholder="Min">
+                </div>
+
+                <label class="sr-only" for="contact-budget-max">Max</label>
+                <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">$</div>
+                </div>
+                <input type="number" class="form-control" name="contact-budget-max" placeholder="Max">
+                </div>
+            </div>
+            
         </div>  
         <div class="form-check custom-checkbox">
             <input type="checkbox" class="form-check-input" name="contact-newsletter" value=True checked>
@@ -99,7 +111,7 @@
         </div>
         <div class="text-center">
             <a class="quiznav" href="{{ request.session.contact_referer }}">Back</a>
-            <button type="submit" href="/quiz/contact/process" class="btn btn-success quiznav">Submit</button>
+            <button type="submit" href="/quiz/contact/process" class="btn btn-primary quiznav">Submit</button>
         </div>
     </form>
 </div>

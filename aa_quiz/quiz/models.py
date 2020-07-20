@@ -9,15 +9,4 @@ class Persona(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'Persona: {self.persona_type}'
-
-
-# class Brief(models.Model):
-#     lead = ForeignKey(Lead, related_name="has_brief")
-#     art_info = 
-#     message = models.TextField()
-#     number_of_works = models.IntegerField()
-#     budget_min = models.IntegerField()
-#     budget_max = models.IntegerField()
-#     images = 
-
+        return f'{self.persona_type}'

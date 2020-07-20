@@ -6,6 +6,15 @@
     <div class="container p-2">
         <p class="text-center">Please uploade some images of your home and the wall(s) where you intend to hang art. Provide dimensions and any other information our curators should consider when putting together suggestions for you.</p>
     </div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> 
+        {% endfor %}
+    </ul>
+        {% endif %}
+
     <form action="/quiz/spec_space/process" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group col bg-light">
@@ -28,7 +37,7 @@
         </div>
         <div class="text-center">
             <a class="quiznav" type="button" href="/quiz/intent">Back</a>
-            <button type="submit" href="/quiz/spec_space/process" class="btn btn-success quiznav">Next</button>
+            <button type="submit" href="/quiz/spec_space/process" class="btn btn-primary quiznav">Next</button>
         </div>
     </form>
 </div>

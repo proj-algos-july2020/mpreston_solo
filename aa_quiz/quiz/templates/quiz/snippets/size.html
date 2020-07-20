@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +33,7 @@
 
         <br><br>
 
-        <div id="quiz-container">
+        <div id="quiz-container"> -->
 
 
 
@@ -56,7 +56,7 @@
                         <div class="col-sm-6">
                             <input type="checkbox" class="form-check-label stretched-link" name="size" id="small">
                             <label for="small">
-                                <img src="{% static 'quiz/imgs/small1.png' %}" class="img-fluid" alt="" width="350">
+                                <img src="{% static 'quiz/imgs/small1.png' %}" class="img-fluid" alt="" width="200">
                             </label>
                             <p class="text-center">Small (0 - 19 inches)</p>
                         </div>
@@ -64,28 +64,28 @@
                         <div class="col-sm-6">
                             <input type="checkbox" class="form-check-label stretched-link" name="size" id="medium">
                             <label for="medium">
-                                <img src="{% static 'quiz/imgs/medium1.png' %}" class="img-fluid" alt="" width="350">
+                                <img src="{% static 'quiz/imgs/medium1.png' %}" class="img-fluid" alt="" width="200">
                             </label>
                             <p class="text-center">Medium (20 - 39 inches)</p>
                         </div>
                         <div class="col-sm-6">
                             <input type="checkbox" class="form-check-label stretched-link" name="size" id="large">
                             <label for="large">
-                                <img src="{% static 'quiz/imgs/large2.jpg' %}" class="img-fluid" alt="" width="350">
+                                <img src="{% static 'quiz/imgs/large2.jpg' %}" class="img-fluid" alt="" width="200">
                             </label>
                             <p class="text-center">Large (40 - 59 inches)</p>
                         </div>
                         <div class="col-sm-6">
                             <input type="checkbox" class="form-check-label stretched-link" name="size" id="oversized">
                             <label for="oversized">
-                                <img src="{% static 'quiz/imgs/oversized.png' %}" class="img-fluid" alt="" width="350">
+                                <img src="{% static 'quiz/imgs/oversized.png' %}" class="img-fluid" alt="" width="200">
                             </label>
                             <p class="text-center">Oversized (60+ inches)</p>
                         </div>
                     </div>
                     <div class="text-center">
-                        <a class="quiznav" href="/quiz/persona">Back</a>
-                        <button type="submit" href="/quiz/category/process" class="btn btn-success quiznav">Next</button>
+                        <a class="quiznav" href="/quiz/style">Back</a>
+                        <button type="submit" href="/quiz/size/process" class="btn btn-primary quiznav">Next</button>
                         <a class="quiznav" href="/quiz/contact">(skip to the end)</a>
                     </div>
                 </form>

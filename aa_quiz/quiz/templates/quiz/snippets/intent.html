@@ -3,6 +3,15 @@
     <div class="container text-right" id="live_score">
         <p>User Score: <span class="badge badge-secondary bg-warning ">{{ request.session.user_score }}</span></p>
     </div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> 
+        {% endfor %}
+    </ul>
+        {% endif %}
+
     <form action="/quiz/intent/process" method="POST"class="text-center">
         {% csrf_token %}
         <fieldset class="form-group text-left bg-light">
@@ -25,6 +34,6 @@
             </div>
         </fieldset>
         <a href="/quiz/">Back</a>
-        <button type="submit" href="/quiz/intent/process" class="btn btn-success quiznav">Next</button>
+        <button type="submit" href="/quiz/intent/process" class="btn btn-primary quiznav">Next</button>
     </form>
 </div>

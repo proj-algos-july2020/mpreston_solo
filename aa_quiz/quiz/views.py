@@ -1,8 +1,12 @@
 from django.shortcuts import render, HttpResponse, redirect
 import json
+import re
+from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
-from leads.models import Lead
+from leads.models import Lead, LeadManager
 from .models import Persona
+# import matplotlib.pyplot as plt
+
 # Create your views here.
 
 ''' TEMPLATE FOR MAIN VIEWS: 
@@ -48,18 +52,28 @@ def q_intent(request):
 
 
 def process_intent(request):
-    # capture form results and store in sessions
-    request.session['intent'] = request.POST['intent']
-    # redirect to appropriate form
-    if request.POST['intent'] == 'info-request':
-        request.session['user_score'] += 30
-        return redirect('/quiz/info_request')
-    elif request.POST['intent'] == 'spec-space':
-        request.session['user_score'] += 20
-        return redirect('/quiz/spec_space')
+    # validate
+    errors = {}
+    if 'intent' not in request.POST:
+        errors['intent'] = "Please choose an option."
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/quiz/intent')
+    
     else:
-        request.session['user_score'] += 5
-        return redirect('/quiz/persona')
+        # capture form results and store in sessions
+        request.session['intent'] = request.POST['intent']
+        # redirect to appropriate form
+        if request.POST['intent'] == 'info-request':
+            request.session['user_score'] += 30
+            return redirect('/quiz/info_request')
+        elif request.POST['intent'] == 'spec-space':
+            request.session['user_score'] += 20
+            return redirect('/quiz/spec_space')
+        else:
+            request.session['user_score'] += 5
+            return redirect('/quiz/persona')
 
 
 def q_info_request(request):
@@ -69,21 +83,52 @@ def q_info_request(request):
 
 
 def process_info_request(request):
-    # capture form results and store in sessions
-    request.session['art_info_url'] = request.POST['art-info-url']
-    request.session['art_artist'] = request.POST['art-info-artist']
-    request.session['art_title'] = request.POST['art-info-title']
-    request.session['art_message'] = request.POST['art-info-message']
+    # validate form data:
+    errors = {}
+    URL_REGEX = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
+    # if no url entered:
+    if 'art-info-url' not in request.POST:
+        if 'art-info-artist' not in request.POST:
+            errors['need_info'] = "Please enter a URL or the artist's name and title of the work."
 
-    # score message length:
-    if len(request.POST['art-info-message']) > 100:
-        request.session['user_score'] += 25
-    elif len(request.POST['art-info-message']) > 50:
-        request.session['user_score'] += 15
+        # if 'art-info-artist' in request.POST:
+        #     if len(request.POST['art-info-artist']) < 2:
+        #         errors['art-info-artist'] = "Artist's name must be more than 2 characters."
+        # if 'art-info-title' in request.POST:
+        #     if len(request.POST['art-info-title']) < 1:
+        #         errors['art-info-title'] = "Please enter the artwork's title."
+    # if url entered:
+    if not URL_REGEX.match(request.POST['art-info-url']):
+        errors['art-info-url'] = "Please enter a valid url."
+
+    if 'art-info-message' not in request.POST:
+        errors['art-info-message'] = "Please let us know what your question is."
+    if 'art-info-message' in request.POST:
+        if len(request.POST['art-info-message']) < 5:
+            errors['message_length'] = "Question should be at least 10 characters."
+
+    # pass errors to template
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/quiz/info_request')
+
     else: 
-        request.session['user_score'] += 0
-    # redirect to next form
-    return redirect('/quiz/contact')
+        # capture form results and store in sessions
+        request.session['art_info_url'] = request.POST['art-info-url']
+        request.session['art_artist'] = request.POST['art-info-artist']
+        request.session['art_title'] = request.POST['art-info-title']
+        request.session['art_message'] = request.POST['art-info-message']
+
+        # score message length and add points for uploading photos:
+        if len(request.POST['art-info-message']) > 20:
+            request.session['user_score'] += 20
+        else: 
+            request.session['user_score'] += 0
+        if request.FILES:
+            request.session['user_score'] += 20
+        # redirect to next form
+        return redirect('/quiz/contact')
 
 
 def q_spec_space(request):
@@ -93,10 +138,35 @@ def q_spec_space(request):
 
 
 def process_spec_space(request):
-    request.session['num_works'] = request.POST['specspace-num-works']
-    request.session['specspace_message'] = request.POST['specspace-message']
-    # note: uploaded images are saved to DB in views.process_contact
-    return redirect('/quiz/persona')
+    # validate
+    print(request.POST)
+    errors = {}
+
+    if len(request.POST['specspace-num-works']) < 1:
+        errors['num_works'] = "Please let us know what your question is."
+    if len(request.POST['specspace-message']) < 1:
+        errors['specspace_message'] = "Please tell us a bit about your space, wall dimensions, and any other relevant information."
+
+    # pass errors to template
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/quiz/spec_space')
+        print(errors)
+
+    else:
+        # capture form results and store in sessions
+        request.session['specspace-num-works'] = request.POST['specspace-num-works']
+        request.session['specspace-message'] = request.POST['specspace-message']
+        # note: uploaded images are saved to DB in views.process_contact
+    
+        # score message length:
+        if len(request.POST['specspace-message']) > 20:
+            request.session['user_score'] += 25
+        else: 
+            request.session['user_score'] += 0
+        # redirect to next form
+        return redirect('/quiz/persona')
 
 
 def q_persona(request):
@@ -123,11 +193,21 @@ def process_persona(request):
         else:  # if choice == he-co
             co_count += 1
             he_count += 1
-
+    
     # store counts in session:
     request.session['lw_count'] = lw_count
     request.session['he_count'] = he_count
     request.session['co_count'] = co_count
+
+    # #x-axis values:
+    # x = []
+    # y = []
+
+
+
+
+
+
     return redirect('/quiz/category')
 
 
@@ -198,40 +278,50 @@ def q_contact(request):
 
 
 def process_contact(request):
-    # calculate persona score and intent score
+    # validate form data:
+    errors = Lead.objects.validator(request.POST)
+    print(errors)
 
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/quiz/contact')
 
-
-    persona = Persona.objects.create(persona_type="HIP ENTHUSIAST")
-    intent = request.session['user_score']
-
-    # convert session data into json -- json.dumps()
-    session = (request.session)
-    print(session)
-
-    # get image files, if any:
-    if request.FILES:
-        image = request.FILES['img_upload']
-        fs = FileSystemStorage()
-        fs.save(image.name, image)
-        print(image.name)
     else:
-        image = ''
+        # calculate persona score and intent score
+        persona = Persona.objects.create(persona_type="HIP ENTHUSIAST")
+        intent = request.session['user_score']
 
-    # create new lead in DB
-    new_lead = Lead.objects.create(
-        first_name=request.POST['contact-first-name'],
-        last_name=request.POST['contact-last-name'],
-        email_address=request.POST['contact-email'],
-        phone_number=request.POST['contact-phone'],
-        budget_min=request.POST['contact-budget-min'],
-        budget_max=request.POST['contact-budget-max'],
-        images=image,
-        newsletter_opt_out=request.POST['contact-newsletter'],
-        intent_score=intent,
-        persona_type=persona,
-        )
-    print(f'Lead created: {new_lead.first_name} {new_lead.last_name}')   
+        # convert session data into json -- json.dumps()
+        results = {}
+        for key, value in request.session.items():
+            results[key] = value
+        brief = json.dumps(results)
+
+        # get image files, if any:
+        if request.FILES:
+            image = request.FILES['img_upload']
+            fs = FileSystemStorage()
+            fs.save(image.name, image)
+            print(image.name)
+        else:
+            image = ''
+
+        # create new lead in DB
+        new_lead = Lead.objects.create(
+            first_name=request.POST['contact-first-name'],
+            last_name=request.POST['contact-last-name'],
+            email_address=request.POST['contact-email'],
+            phone_number=request.POST['contact-phone'],
+            budget_min=request.POST['contact-budget-min'],
+            budget_max=request.POST['contact-budget-max'],
+            images=image,
+            quiz_brief=brief,
+            newsletter_opt_out=request.POST['contact-newsletter'],
+            intent_score=intent,
+            persona_type=persona,
+            )
+        print(f'Lead created: {new_lead.first_name} {new_lead.last_name}')   
 
     # redirect to q_results
     return redirect('/quiz/result')
