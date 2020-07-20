@@ -3,6 +3,7 @@ from .models import Lead
 
 # Create your views here.
 
+
 def index(request):
     context = {
         'all_leads': Lead.objects.all()
@@ -10,5 +11,8 @@ def index(request):
     return render(request, 'leads/index.html', context)
 
 
-def lead_detail(request):
-    return render(request, 'leads/lead_detail.html')
+def lead_detail(request, id):
+    context = {
+        'lead': Lead.objects.get(id=id)
+    }
+    return render(request, 'leads/lead_detail.html', context)
