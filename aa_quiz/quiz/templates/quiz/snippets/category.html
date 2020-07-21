@@ -43,7 +43,7 @@
         <p>User Score: <span class="badge badge-secondary bg-warning ">{{ request.session.user_score }}</span></p>
     </div>
     <div class="container">
-        <p class="text-center">Are there categories of art you are NOT interested in seeing?</p>
+        <p class="text-center">Are there categories of art are you interested in seeing?</p>
     </div>
 
 
@@ -55,7 +55,7 @@
         <div class="form-group form-inline bg-light">
 
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="painting">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="painting" value="painting">
                 <label for="painting">
                     <img src="{% static 'quiz/imgs/painting.jpg' %}" class="img-fluid" alt="A semi abstract painting of woman's face." width="200">
                 </label>
@@ -63,35 +63,35 @@
             </div>
 
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="photography">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="photography" value="photography">
                 <label for="photography">
                     <img src="{% static 'quiz/imgs/photography.jpg' %}" class="img-fluid" alt="An aerial photograph of a ski hill." width="200">
                 </label>
                 <p class="text-center">Photography</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="collage">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="collage" value="collage">
                 <label for="collage">
                     <img src="{% static 'quiz/imgs/collage.jpg' %}" class="img-fluid" alt="An abstract geometric collage." width="200">
                 </label>
                 <p class="text-center">Collage</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="sculpture">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="wall-sculpture" value="wall-sculpture">
                 <label for="sculpture">
-                    <img src="{% static 'quiz/imgs/wall_s1.jpg' %}" class="img-fluid" alt="An abstract freestanding sculpture of a family made out of metal." width="200">
+                    <img src="{% static 'quiz/imgs/wall_s1.jpg' %}" class="img-fluid" alt="A metal abstract wall sculpture composed of squiggly lines." width="200">
                 </label>
                 <p class="text-center">Wall Sculpture</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="wall sculpture">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="sculpture" value="sculpture">
                 <label for="wall sculpture">
-                    <img src="{% static 'quiz/imgs/free_s.jpg' %}" class="img-fluid" alt="A metal abstract wall sculpture composed of squiggly lines." width="200">
+                    <img src="{% static 'quiz/imgs/free_s.jpg' %}" class="img-fluid" alt="A small sculpture of abstract figures sitting together on a rock, made out of metal." width="200">
                 </label>
                 <p class="text-center">Sculpture</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="drawing">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="drawing" value="drawing">
                 <label for="drawing">
                     <img src="{% static 'quiz/imgs/drawing.jpg' %}" class="img-fluid" alt="A charcoal drawing of two running horses." width="200">
                 </label>

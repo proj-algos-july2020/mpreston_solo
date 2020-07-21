@@ -46,49 +46,49 @@
     <form action="/quiz/style/process" method="POST">
         {% csrf_token %}
         <div class="container">
-            <label class="text-left" for="category">Select any/all that apply:</label>
+            <label class="text-left" for="style">Select any/all that apply:</label>
         </div>
         <div class="form-group form-inline bg-light">
 
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="texture">
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="texture" value="texture">
                 <label for="texture">
                     <img src="{% static 'quiz/imgs/texture.jpg' %}" class="img-fluid" alt="An impasto painting of a beach." width="200">
                 </label>
                 <p class="text-center">Texture</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="neutral">
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="neutral" value="neutral">
                 <label for="neutral">
                     <img src="{% static 'quiz/imgs/neutral.jpg' %}" class="img-fluid" alt="A timelapse photograph of people walking by a sand colored building." width="200">
                 </label>
                 <p class="text-center">Neutral</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="pop">
-                <label for="pop">
-                    <img src="{% static 'quiz/imgs/pop.jpg' %}" class="img-fluid" alt="A charcoal drawing of two running horses." width="200">
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="surrealism" value="surrealism">
+                <label for="surrealism">
+                    <img src="{% static 'quiz/imgs/surrealism.jpg' %}" class="img-fluid" alt="A giraffe and flamingos parade in a french garden." width="200">
                 </label>
-                <p class="text-center">Pop</p>
+                <p class="text-center">Surrealism</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="graphic">
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="graphic" value="graphic">
                 <label for="graphic">
-                    <img src="{% static 'quiz/imgs/graphic2.jpg' %}" class="img-fluid" alt="." width="200">
+                    <img src="{% static 'quiz/imgs/graphic2.jpg' %}" class="img-fluid" alt="A figure stands next to a blue pool on a wall at the edge of a blue horizon." width="200">
                 </label>
                 <p class="text-center">Graphic</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="bright">
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="bright" value="bright">
                 <label for="bright">
                     <img src="{% static 'quiz/imgs/bright2.jpg' %}" class="img-fluid" alt="An bright abstract painting with turquoise and pink." width="200">
                 </label>
                 <p class="text-center">Bright</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="minimalism">
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="minimalism" value="minimalism">
                 <label for="minimalism">
-                    <img src="{% static 'quiz/imgs/minimalist1.jpg' %}" class="img-fluid" alt="" width="200">
+                    <img src="{% static 'quiz/imgs/minimalist1.jpg' %}" class="img-fluid" alt="Gestural black brushstrokes against a white background." width="200">
                 </label>
                 <p class="text-center">Minimalism</p>
             </div>

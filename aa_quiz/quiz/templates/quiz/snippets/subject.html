@@ -46,47 +46,47 @@
     <form action="/quiz/subject/process" method="POST">
         {% csrf_token %}
         <div class="container">
-            <label class="text-left" for="category">Select any/all that apply:</label>
+            <label class="text-left" for="subject">Select any/all that apply:</label>
         </div>
         <div class="form-group form-inline bg-light">
 
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="landscape">
+                <input type="checkbox" class="form-check-label stretched-link" name="subject" id="landscape" value="landscape">
                 <label for="landscape">
-                    <img src="{% static 'quiz/imgs/landscape.jpg' %}" class="img-fluid" alt="A landscape painting of a green field with red flowers." width="200">
+                    <img src="{% static 'quiz/imgs/landscape.jpg' %}" class="img-fluid" alt="A landscape painting of a wide green field with red wildflowers." width="200">
                 </label>
                 <p class="text-center">Landscape</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="abstract">
+                <input type="checkbox" class="form-check-label stretched-link" name="subject" id="abstract" value="abstract">
                 <label for="abstract">
-                    <img src="{% static 'quiz/imgs/abstract.jpg' %}" class="img-fluid" alt="An abstract painting inspired by Bauhaus." width="200">
+                    <img src="{% static 'quiz/imgs/abstract.jpg' %}" class="img-fluid" alt="An abstract line painting inspired by Bauhaus." width="200">
                 </label>
                 <p class="text-center">Abstract</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="figurative">
+                <input type="checkbox" class="form-check-label stretched-link" name="subject" id="figurative" value="figurative">
                 <label for="portrait">
                     <img src="{% static 'quiz/imgs/fig1.jpg' %}" class="img-fluid" alt="A painting of a woman at the beach with a towel blowing in the wind." width="200">
                 </label>
                 <p class="text-center">Figurative</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="street">
+                <input type="checkbox" class="form-check-label stretched-link" name="subject" id="street" value="street">
                 <label for="figurative">
                     <img src="{% static 'quiz/imgs/street.jpg' %}" class="img-fluid" alt="A street art painting with gestural faces and bold color." width="200">
                 </label>
                 <p class="text-center">Street</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="portrait">
+                <input type="checkbox" class="form-check-label stretched-link" name="subject" id="portrait" value="portrait">
                 <label for="portrait">
                     <img src="{% static 'quiz/imgs/portrait3.jpg' %}" class="img-fluid" alt="A close up, photorealistic painting of woman laughing." width="200">
                 </label>
                 <p class="text-center">Portraiture</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="category" id="pop">
+                <input type="checkbox" class="form-check-label stretched-link" name="subject" id="pop" value="pop">
                 <label for="pop">
                     <img src="{% static 'quiz/imgs/pop.jpg' %}" class="img-fluid" alt="A bright pink screenprint of a white batman mask superimposed over a portrait of the Queen of England." width="200">
                 </label>
