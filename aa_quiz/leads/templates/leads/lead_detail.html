@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lead Detail</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    {% load static %}
 </head>
 <body>
     <div class="wrapper container">
@@ -64,11 +64,12 @@
                 </table>
 
                 <h5>Quiz Brief:</h5>
-                {% for item in brief.items %}
+                <!-- {% for item in brief %}
                 <ul>
                     <li>{{ item }}</li>
                 </ul>
-                {% endfor %}
+                {% endfor %} -->
+                <ul>{{ brief }}</ul>
 
                 <!-- <table class="table table-bordered table-striped">
                     <h5>Quiz Brief</h5>
@@ -84,12 +85,8 @@
 
                 <div>
                     <br>
-                    <p>Client Images:</p>
-                    {% if images %}
-                        {% for image in lead.images %}
-                            <img src="{{ image.url }}" alt="">
-                        {% endfor %}
-                    {% endif %}
+                    <h5>Client Images:</h5>
+                        <img src="{{ lead.uploads.image.url }}" alt="uploads.name">
                 </div>
             </div>
         </div>
