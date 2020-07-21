@@ -42,7 +42,9 @@
                     <p class="text-center">User Score:</p>
                     <h4 class="text-center">{{ request.session.user_score }} / XX </h4>
                     <p class="text-center">Persona Type:</p>
-                    <h4 class="text-center">{{ this_lead.persona_type }}</h4>
+                    {% for persona in this_lead.has_persona.all %}
+                    <h4 class="text-center">{{ persona.persona_type }}</h4>
+                    {% endfor %}
                 </div>
                 <div class="container col-sm-6">
                     <p class="text-center">Placeholder Ternary Plot:</p>

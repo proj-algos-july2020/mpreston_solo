@@ -30,7 +30,7 @@ class Lead(models.Model):
     budget_min = models.IntegerField()
     budget_max = models.IntegerField()
     intent_score = models.IntegerField()
-    persona_type = models.ManyToManyField(Persona, related_name="has_leads", blank=True)
+    has_persona = models.ManyToManyField(Persona, related_name="has_leads", blank=True)
     uploads = models.ImageField(null=True, upload_to='lead_uploads')
     quiz_brief = models.TextField()
     newsletter_opt_in = models.BooleanField()

@@ -158,9 +158,18 @@ def process_spec_space(request):
         # capture form results and store in sessions
         request.session['specspace-num-works'] = request.POST['specspace-num-works']
         request.session['specspace-message'] = request.POST['specspace-message']
-        print(request.FILES)
-        # note: uploaded images are saved to DB in views.process_contact
-    
+        # print(request.POST['img_upload'])
+
+        # # get image files, if any:
+        # if request.POST['img_upload']:
+        #     client_upload = request.FILES['img_upload']
+        #     client_upload.save()
+        #     request.session['img'] = client_upload
+        #     print(request.session['img'])
+        # else:
+        #     client_upload = ''
+
+
         # score message length:
         if len(request.POST['specspace-message']) > 20:
             request.session['user_score'] += 25
@@ -299,14 +308,6 @@ def process_contact(request):
             results[key] = value
         brief = json.dumps(results)
 
-        # get image files, if any:
-        if request.FILES:
-            client_upload = request.FILES['img_upload']
-            fs = FileSystemStorage()
-            fs.save(client_upload.name, client_upload)
-            print(client_upload.name)
-        else:
-            client_upload = ''
 
         # get Boolean newsletter opt-in
         print(request.POST['newsletter'])
@@ -324,7 +325,7 @@ def process_contact(request):
             phone_number=request.POST['contact-phone'],
             budget_min=request.POST['contact-budget-min'],
             budget_max=request.POST['contact-budget-max'],
-            uploads=client_upload,
+            uploads=request.session['img'],
             quiz_brief=brief,
             newsletter_opt_in=request.POST['newsletter'],
             intent_score=intent,
