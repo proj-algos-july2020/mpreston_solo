@@ -158,6 +158,7 @@ def process_spec_space(request):
         # capture form results and store in sessions
         request.session['specspace-num-works'] = request.POST['specspace-num-works']
         request.session['specspace-message'] = request.POST['specspace-message']
+        print(request.FILES)
         # note: uploaded images are saved to DB in views.process_contact
     
         # score message length:
@@ -180,9 +181,10 @@ def process_persona(request):
     lw_count = 0
     he_count = 0
     co_count = 0
+    na_count = 0
 
     # tally persona results
-    choices = request.POST.getlist('persona')
+    choices = request.POST.getlist('persona', 'na')
     for choice in choices:
         if choice == 'lw':
             lw_count += 1
@@ -190,33 +192,23 @@ def process_persona(request):
             co_count += 1
         elif choice == 'he':
             he_count += 1
-        else:  # if choice == he-co
-            co_count += 1
-            he_count += 1
+        else:
+            na_count = 1
+
+    print(choices)
     
     # store counts in session for plotting:
     p_score = {
         'LW': lw_count,
         'HE': he_count,
         'CO': co_count,
+        'NA': na_count,
         }
     request.session['p_scores'] = p_score
-
-    # find max values to determine earned persona:
-    max_val = max(p_score.values())
-    max_keys = [k for k, v in p_score.items() if v == max_val]
-    print(max_keys, max_val)
-
-    persona_list = []
-    if 'HE' in max_keys:
-        persona_list.append('HIP ENTHUSIAST')
-    if 'CO' in max_keys:
-        persona_list.append('COLLECTOR')
-    if 'LW' in max_keys:
-        persona_list.append('LIVING WELL')
-    print(persona_list)
+    print(p_score)
     
-    request.session['persona_list'] = persona_list
+
+    # persona creation happens at submit instance to prevent quiz quitters from creating personas. 
 
     return redirect('/quiz/category')
 
@@ -298,10 +290,7 @@ def process_contact(request):
         return redirect('/quiz/contact')
 
     else:
-        # calculate persona score and intent score
-        persona = Persona.objects.create(
-            persona_type=request.session['persona_list']
-            )
+        # grab cumulative intent score:
         intent = request.session['user_score']
 
         # convert session data into json -- json.dumps()
@@ -312,12 +301,20 @@ def process_contact(request):
 
         # get image files, if any:
         if request.FILES:
-            image = request.FILES['img_upload']
+            client_upload = request.FILES['img_upload']
             fs = FileSystemStorage()
-            fs.save(image.name, image)
-            print(image.name)
+            fs.save(client_upload.name, client_upload)
+            print(client_upload.name)
         else:
-            image = ''
+            client_upload = ''
+
+        # get Boolean newsletter opt-in
+        print(request.POST['newsletter'])
+        # if request.POST['newsletter'] == 'on':
+        #     opt_in = True
+        # else:
+        #     opt_in = False
+
 
         # create new lead in DB
         new_lead = Lead.objects.create(
@@ -327,21 +324,53 @@ def process_contact(request):
             phone_number=request.POST['contact-phone'],
             budget_min=request.POST['contact-budget-min'],
             budget_max=request.POST['contact-budget-max'],
-            images=image,
+            uploads=client_upload,
             quiz_brief=brief,
-            newsletter_opt_in=request.POST['contact-newsletter'],
+            newsletter_opt_in=request.POST['newsletter'],
             intent_score=intent,
-            persona_type=persona,
             )
         print(f'Lead created: {new_lead.first_name} {new_lead.last_name}')
+    
+        # DETERMINE PERSONA OF NEW LEAD
+        # find max values to determine earned persona:
+        p_scores = request.session['p_scores']
+        max_val = max(p_scores.values())
+        max_keys = [k for k, v in p_scores.items() if v == max_val]
+        print(max_keys, max_val)
 
-        request.session['id'] = new_lead.id
-        request.session['persona'] = new_lead.persona
+        # PERSONA TYPES AND IDs:
+        # 1 - LIVING WELL
+        # 2 - HIP ENTHUSIAST
+        # 3 - COLLECTOR
+        # 4 - UNKNOWN
+        for key in max_keys:
+            if key == 'LW':
+                this_persona = Persona.objects.get(id=1)
+                this_persona.has_leads.add(new_lead)
+                print(f'Persona created: {this_persona.persona_type}')
+            elif key == 'HE':
+                this_persona = Persona.objects.get(id=2)
+                this_persona.has_leads.add(new_lead)
+                print(f'Persona created: {this_persona.persona_type}')
+            elif key == 'CO':
+                this_persona = Persona.objects.get(id=3)
+                this_persona.has_leads.add(new_lead)
+                print(f'Persona created: {this_persona.persona_type}')
+            elif key == 'NA':
+                this_persona = Persona.objects.get(id=4)
+                this_persona.has_leads.add(new_lead)
+                print(f'Persona created: {this_persona.persona_type}')
+
+    lead = Lead.objects.get(id=new_lead.id)
+    result_id = lead.id
 
     # redirect to q_results
-    return redirect('/quiz/result')
+    return redirect(f'/quiz/result/{result_id}')
 
 
-def q_result(request):
+def q_result(request, id):
     # render quiz Results page
-    return render(request, 'quiz/snippets/result.html')
+    context = {
+        'this_lead': Lead.objects.get(id=id)
+    }
+    return render(request, 'quiz/snippets/result.html', context)

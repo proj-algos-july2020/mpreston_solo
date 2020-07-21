@@ -21,5 +21,5 @@ urlpatterns = [
    path('size/process', views.process_size),
    path('contact', views.q_contact),
    path('contact/process', views.process_contact),
-   path('result', views.q_result),
+   path('result/<int:id>', views.q_result),
 ]
