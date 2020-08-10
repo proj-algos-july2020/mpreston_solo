@@ -35,11 +35,11 @@
                     <h5>Contact Information</h5>
                     <tr>
                         <th scope="row">Email</th>
-                        <td><a href="#">{{ lead.email_address }}</a></td>
+                        <td><a href="mailto:{{ lead.email_address }}">{{ lead.email_address }}</a></td>
                     </tr>
                     <tr>
                         <th scope="row">Phone</th>
-                        <td><a href="#">{{ lead.phone_number }}</a></td>
+                        <td><a href="tel:{{ lead.phone_number }}">{{ lead.phone_number }}</a></td>
                     </tr>
                 </table>
 
@@ -59,7 +59,7 @@
                     <h5>Quiz Brief</h5>
                     <tr>
                         <th scope="row">Budget:</th>
-                        <td><a href="#">${{ lead.budget_min }} - ${{lead.budget_max}}</a></td>
+                        <td>${{ lead.budget_min }} - ${{lead.budget_max}}</td>
                     </tr>
                 </table>
 

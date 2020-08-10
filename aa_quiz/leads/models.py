@@ -1,6 +1,7 @@
 from django.db import models
 from quiz.models import Persona
 import re
+from PIL import Image
 
 
 # Create your models here.
