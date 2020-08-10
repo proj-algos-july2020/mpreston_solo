@@ -60,7 +60,7 @@ def process_intent(request):
         for key, value in errors.items():
             messages.error(request, value)
         return redirect('/quiz/intent')
-    
+
     else:
         # capture form results and store in sessions
         request.session['intent'] = request.POST['intent']
@@ -105,7 +105,7 @@ def process_info_request(request):
         errors['art-info-message'] = "Please let us know what your question is."
     if 'art-info-message' in request.POST:
         if len(request.POST['art-info-message']) < 5:
-            errors['message_length'] = "Question should be at least 10 characters."
+            errors['message_length'] = "Please submit a question that is at least 10 characters in length."
 
     # pass errors to template
     if len(errors) > 0:
@@ -158,17 +158,7 @@ def process_spec_space(request):
         # capture form results and store in sessions
         request.session['specspace-num-works'] = request.POST['specspace-num-works']
         request.session['specspace-message'] = request.POST['specspace-message']
-        # print(request.POST['img_upload'])
-
-        # # get image files, if any:
-        # if request.POST['img_upload']:
-        #     client_upload = request.FILES['img_upload']
-        #     client_upload.save()
-        #     request.session['img'] = client_upload
-        #     print(request.session['img'])
-        # else:
-        #     client_upload = ''
-
+        # image currently handled at process_contact, but this isn't working, so we have to look into it further
 
         # score message length:
         if len(request.POST['specspace-message']) > 20:
@@ -192,33 +182,36 @@ def process_persona(request):
     co_count = 0
     na_count = 0
 
-    # tally persona results
-    choices = request.POST.getlist('persona', 'na')
-    for choice in choices:
-        if choice == 'lw':
-            lw_count += 1
-        elif choice == 'co':
-            co_count += 1
-        elif choice == 'he':
-            he_count += 1
-        else:
-            na_count = 1
+    # if user makes persona selections
+    if 'persona' in request.POST:
+        # tally persona results
+        choices = request.POST.getlist('persona')
+        for choice in choices:
+            if choice == 'lw':
+                lw_count += 1
+            elif choice == 'co':
+                co_count += 1
+            # elif choice == 'he':
+            #     he_count += 1
+            else:
+                he_count += 1
+            # else:
+            #     na_count = 1
+            print(choices)
+    else:
+        na_count = 1
 
-    print(choices)
-    
     # store counts in session for plotting:
-    p_score = {
+    p_scores = {
         'LW': lw_count,
         'HE': he_count,
         'CO': co_count,
         'NA': na_count,
         }
-    request.session['p_scores'] = p_score
-    print(p_score)
-    
+    request.session['p_scores'] = p_scores
+    print(p_scores)
 
-    # persona creation happens at submit instance to prevent quiz quitters from creating personas. 
-
+    # Note: persona creation happens at submit instance to prevent quiz quitters from creating personas. 
     return redirect('/quiz/category')
 
 
@@ -308,14 +301,21 @@ def process_contact(request):
             results[key] = value
         brief = json.dumps(results)
 
-
         # get Boolean newsletter opt-in
         print(request.POST['newsletter'])
-        # if request.POST['newsletter'] == 'on':
-        #     opt_in = True
-        # else:
-        #     opt_in = False
 
+        # get image files, if any:
+        if request.FILES:
+            image = request.FILES['img_upload']
+            client_upload = request.FILES['img_upload']
+            fs = FileSystemStorage()
+            fs.save(image.name, image)
+            print(image.name)
+            fs.save(client_upload.name, client_upload)
+            print(client_upload.name)
+        else:
+            image = ''
+            client_upload = ''
 
         # create new lead in DB
         new_lead = Lead.objects.create(
@@ -325,7 +325,7 @@ def process_contact(request):
             phone_number=request.POST['contact-phone'],
             budget_min=request.POST['contact-budget-min'],
             budget_max=request.POST['contact-budget-max'],
-            uploads=request.session['img'],
+            uploads=client_upload,
             quiz_brief=brief,
             newsletter_opt_in=request.POST['newsletter'],
             intent_score=intent,
@@ -334,10 +334,19 @@ def process_contact(request):
     
         # DETERMINE PERSONA OF NEW LEAD
         # find max values to determine earned persona:
-        p_scores = request.session['p_scores']
+        if 'p_scores' in request.session:
+            p_scores = request.session['p_scores']
+        else:
+            p_scores = {
+                'LW': 0,
+                'HE': 0,
+                'CO': 0,
+                'NA': 1,
+                }
         max_val = max(p_scores.values())
         max_keys = [k for k, v in p_scores.items() if v == max_val]
         print(max_keys, max_val)
+            
 
         # PERSONA TYPES AND IDs:
         # 1 - LIVING WELL
