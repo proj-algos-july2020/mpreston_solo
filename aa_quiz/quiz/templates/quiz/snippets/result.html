@@ -1,64 +1,29 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Art Advisory Quiz</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Leads <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="wrapper container">
-        <div class="mb-2 bg-light text-dark"1>
-            <p class="text-left">Get Help from Our Expert Curators</p>
-        </div>
-
-        <br><br>
-
-        <div id="quiz-container"> -->
-
-            <div class="container col-md-8 border" id="result:detail">
-                <h4 class="text-center">Results</h4>
-                <div class="container col-md-8">
-                    <p class="text-center">Based on the responses to the answered questions, this lead receives the following score and categorization:</p>
-                </div>
-                <div class="container col-sm-6 bg-light border" id="result:score">
-                    <p class="text-center">User Score:</p>
-                    <h4 class="text-center">{{ request.session.user_score }} / XX </h4>
-                    <p class="text-center">Persona Type:</p>
-                    {% for persona in this_lead.has_persona.all %}
-                    <h4 class="text-center">{{ persona.persona_type }}</h4>
-                    {% endfor %}
-                </div>
-                <div class="container col-sm-6">
-                    <p class="text-center">Placeholder Ternary Plot:</p>
-                    <img src="https://images.squarespace-cdn.com/content/v1/549dcda5e4b0a47d0ae1db1e/1553131581769-6OIRE1ASH19T9KQ9TL2Y/ke17ZwdGBToddI8pDm48kPqg4u7vxps8M6iyCGQlsKJZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzB60uDFbS1f04QYWH56YqOHOaxAV-iCZAwnXDQjr4GtzJs9rBwDwxu5aEShX3C7PU/ternary_tiny.png?format=500w" width="500" alt="graph with summary of results">
-                </div>
-                <div class="container bg-light" id="result:actions">
-                    <p class="text-center">Possible follow up actions:</p>
-                    <ul>
-                        {% for action in persona_actions %}
-                        <li>{{ action }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="text-center">
-                    <a class="btn btn-primary" href="/leads/detail/{{request.session.id}}" role="button">See Lead Results Breakdown</a>
-                </div>
-            </div>
+<div class="container col-md-8 border" id="result:detail">
+    <h4 class="text-center">Results</h4>
+    <div class="container col-md-8">
+        <p class="text-center">Based on the responses to the answered questions, this lead receives the following score and categorization:</p>
+    </div>
+    <div class="container col-sm-6 bg-light border" id="result:score">
+        <p class="text-center">User Score:</p>
+        <h4 class="text-center">{{ request.session.user_score }} / XX </h4>
+        <p class="text-center">Persona Type:</p>
+        {% for persona in this_lead.has_persona.all %}
+        <h4 class="text-center">{{ persona.persona_type }}</h4>
+        {% endfor %}
+    </div>
+    <div class="container col-sm-6">
+        <p class="text-center">Placeholder Ternary Plot:</p>
+        <img src="https://images.squarespace-cdn.com/content/v1/549dcda5e4b0a47d0ae1db1e/1553131581769-6OIRE1ASH19T9KQ9TL2Y/ke17ZwdGBToddI8pDm48kPqg4u7vxps8M6iyCGQlsKJZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzB60uDFbS1f04QYWH56YqOHOaxAV-iCZAwnXDQjr4GtzJs9rBwDwxu5aEShX3C7PU/ternary_tiny.png?format=500w" width="500" alt="graph with summary of results">
+    </div>
+    <div class="container bg-light" id="result:actions">
+        <p class="text-center">Possible follow up actions:</p>
+        <ul>
+            {% for action in persona_actions %}
+            <li>{{ action }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="text-center">
+        <a class="btn btn-primary" href="/leads/detail/{{ this_lead.id }}" role="button">See Lead Results Breakdown</a>
+    </div>
+</div>
