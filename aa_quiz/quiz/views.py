@@ -102,7 +102,7 @@ def process_info_request(request):
         errors['art-info-url'] = "Please enter a valid url."
 
     if 'art-info-message' not in request.POST:
-        errors['art-info-message'] = "Please let us know what your question is."
+        errors['art-info-message'] = "Please submit a question that is at least 10 characters in length."
     if 'art-info-message' in request.POST:
         if len(request.POST['art-info-message']) < 5:
             errors['message_length'] = "Please submit a question that is at least 10 characters in length."
@@ -143,7 +143,7 @@ def process_spec_space(request):
     errors = {}
 
     if len(request.POST['specspace-num-works']) < 1:
-        errors['num_works'] = "Please let us know what your question is."
+        errors['num_works'] = "Please let us know how many artworks you are looking for."
     if len(request.POST['specspace-message']) < 1:
         errors['specspace_message'] = "Please tell us a bit about your space, wall dimensions, and any other relevant information."
 
@@ -158,7 +158,6 @@ def process_spec_space(request):
         # capture form results and store in sessions
         request.session['specspace-num-works'] = request.POST['specspace-num-works']
         request.session['specspace-message'] = request.POST['specspace-message']
-        # image currently handled at process_contact, but this isn't working, so we have to look into it further
 
         # score message length:
         if len(request.POST['specspace-message']) > 20:
@@ -305,17 +304,10 @@ def process_contact(request):
         print(request.POST['newsletter'])
 
         # get image files, if any:
-        if request.FILES:
-            image = request.FILES['img_upload']
+        if 'img_upload' in request.FILES:
             client_upload = request.FILES['img_upload']
-            fs = FileSystemStorage()
-            fs.save(image.name, image)
-            print(image.name)
-            fs.save(client_upload.name, client_upload)
-            print(client_upload.name)
         else:
-            image = ''
-            client_upload = ''
+            client_upload = None
 
         # create new lead in DB
         new_lead = Lead.objects.create(

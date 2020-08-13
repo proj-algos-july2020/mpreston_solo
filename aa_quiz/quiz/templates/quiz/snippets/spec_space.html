@@ -18,21 +18,24 @@
     <form action="/quiz/spec_space/process" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group col bg-light">
+            <br>
             <div class="form-group row">
-                <label for="specspace-num-works" class="col-sm-6 col-form-label">How many artworks are you looking for?</label>
-                <div class="col-sm-4">
+                <label for="specspace-num-works" class="col-sm-4 col-form-label">How many artworks are you looking for?*</label>
+                <div class="col-sm-3">
                     <input type="text" class="form-control" name="specspace-num-works" placeholder="example: 2-3">
                 </div>
             </div> 
             <div class="form-group row">
-                <label for="specspace-message" class="col-sm-2 col-form-label">Message:</label>
+                <label for="specspace-message" class="col-sm-4 col-form-label">Tell us some details about your space*:</label>
                 <div class="col-sm-8">
                     <textarea class="form-control" name="specspace-message" rows="3" placeholder="Looking for artwork for above the sofa. Ideally around 48 inches squared."></textarea>
                 </div>
             </div>
             <div class="form-group form-inline-row">
-                <label for="img_upload">Please upload a photo of your space:</label>
-                <input type="file" id="img_upload" name="img_upload">
+                <label for="img_upload">Upload a photo of your space:</label>
+                <div class="form-inline-row">
+                    <input type="file" id="img_upload" name="img_upload" class="text-center">
+                </div>
             </div>
         </div>
         <div class="text-center">
