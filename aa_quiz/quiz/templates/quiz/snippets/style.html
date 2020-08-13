@@ -5,13 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Art Advisory Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/quiz/css/custom-style.css' %}" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
+<body> -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,42 +52,45 @@
         <div class="form-group form-inline bg-light">
 
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="style" id="texture" value="texture">
+                <br>
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="texture" value="texture" hidden>
                 <label for="texture">
                     <img src="{% static 'quiz/imgs/texture.jpg' %}" class="img-fluid" alt="An impasto painting of a beach." width="200">
                 </label>
                 <p class="text-center">Texture</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="style" id="neutral" value="neutral">
+                <br>
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="neutral" value="neutral" hidden>
                 <label for="neutral">
                     <img src="{% static 'quiz/imgs/neutral.jpg' %}" class="img-fluid" alt="A timelapse photograph of people walking by a sand colored building." width="200">
                 </label>
                 <p class="text-center">Neutral</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="style" id="surrealism" value="surrealism">
+                <br>
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="surrealism" value="surrealism" hidden>
                 <label for="surrealism">
                     <img src="{% static 'quiz/imgs/surrealism.jpg' %}" class="img-fluid" alt="A giraffe and flamingos parade in a french garden." width="200">
                 </label>
                 <p class="text-center">Surrealism</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="style" id="graphic" value="graphic">
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="graphic" value="graphic" hidden>
                 <label for="graphic">
                     <img src="{% static 'quiz/imgs/graphic2.jpg' %}" class="img-fluid" alt="A figure stands next to a blue pool on a wall at the edge of a blue horizon." width="200">
                 </label>
                 <p class="text-center">Graphic</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="style" id="bright" value="bright">
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="bright" value="bright" hidden>
                 <label for="bright">
                     <img src="{% static 'quiz/imgs/bright2.jpg' %}" class="img-fluid" alt="An bright abstract painting with turquoise and pink." width="200">
                 </label>
                 <p class="text-center">Bright</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link" name="style" id="minimalism" value="minimalism">
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="minimalism" value="minimalism" hidden>
                 <label for="minimalism">
                     <img src="{% static 'quiz/imgs/minimalist1.jpg' %}" class="img-fluid" alt="Gestural black brushstrokes against a white background." width="200">
                 </label>
@@ -100,3 +104,16 @@
         </div>
     </form>
 </div>
+
+<!-- </body> -->
+
+<script>
+    console.log($);
+    $(document).ready(function(){
+
+        // select vs unselect images
+        $('img').click(function(){
+            $(this).toggleClass('border-img')
+        });
+    });
+</script>   

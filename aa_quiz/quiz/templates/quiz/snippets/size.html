@@ -5,13 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Art Advisory Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/quiz/css/custom-style.css' %}" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
+<body> -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +55,8 @@
                     </div>
                     <div class="form-group form-inline bg-light">
                         <div class="col-sm-6">
-                            <input type="checkbox" class="form-check-label stretched-link" name="size" id="small" value="small">
+                            <br>
+                            <input type="checkbox" class="form-check-label stretched-link" name="size" id="small" value="small" hidden>
                             <label for="small">
                                 <img src="{% static 'quiz/imgs/small1.png' %}" class="img-fluid" alt="An artwork between 0 and 19 inches in length rests on a mantle." width="200">
                             </label>
@@ -62,21 +64,26 @@
                         </div>
             
                         <div class="col-sm-6">
-                            <input type="checkbox" class="form-check-label stretched-link" name="size" id="medium" value="medium">
+                            <br>
+                            <input type="checkbox" class="form-check-label stretched-link" name="size" id="medium" value="medium" hidden>
                             <label for="medium">
                                 <img src="{% static 'quiz/imgs/medium1.png' %}" class="img-fluid" alt="An artwork between 20 and 39 inches in length hangs on a side wall." width="200">
                             </label>
                             <p class="text-center">Medium (20 - 39 inches)</p>
                         </div>
+
                         <div class="col-sm-6">
-                            <input type="checkbox" class="form-check-label stretched-link" name="size" id="large" value="large">
+                            <br>
+                            <input type="checkbox" class="form-check-label stretched-link" name="size" id="large" value="large" hidden>
                             <label for="large">
                                 <img src="{% static 'quiz/imgs/large2.jpg' %}" class="img-fluid" alt="An artwork between 40 and 59 inches in length hangs above a bed headboard." width="200">
                             </label>
                             <p class="text-center">Large (40 - 59 inches)</p>
                         </div>
+
                         <div class="col-sm-6">
-                            <input type="checkbox" class="form-check-label stretched-link" name="size" id="oversized" value="oversized">
+                            <br>
+                            <input type="checkbox" class="form-check-label stretched-link" name="size" id="oversized" value="oversized" hidden>
                             <label for="oversized">
                                 <img src="{% static 'quiz/imgs/oversized.png' %}" class="img-fluid" alt="An artwork 60 inches or greater in length hangs on a large living room wall." width="200">
                             </label>
@@ -90,3 +97,16 @@
                     </div>
                 </form>
             </div>
+
+<!-- </body> -->
+
+<script>
+    console.log($);
+    $(document).ready(function(){
+
+        // select vs unselect images
+        $('img').click(function(){
+            $(this).toggleClass('border-img')
+        });
+    });
+</script>   

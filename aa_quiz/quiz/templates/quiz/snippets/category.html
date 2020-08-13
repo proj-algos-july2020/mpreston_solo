@@ -1,16 +1,19 @@
-{% load static %}
+<!-- {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Advisory Quiz</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '/quiz/css/custom-style.css' %}" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </head>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<body> -->
+    
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +35,7 @@
 
         <br><br>
 
-        <div id="quiz-container">
+        <div id="quiz-container"> -->
 
 
 
@@ -55,47 +58,47 @@
 
             <div class="col-sm-4">
                 <br>
-                <input type="checkbox" class="form-check-label stretched-link border-select" name="category" id="painting" value="painting" hidden>
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="painting" value="painting" hidden>
                 <label for="painting">
-                    <img src="{% static 'quiz/imgs/painting.jpg' %}" class="thumbnail" alt="A semi abstract painting of woman's face." width="200">
+                    <img src="{% static 'quiz/imgs/painting.jpg' %}" class="img-fluid" alt="A semi abstract painting of woman's face." width="200">
                 </label>
                 <p class="text-center">Painting</p>
             </div>
 
             <div class="col-sm-4">
                 <br>
-                <input type="checkbox" class="form-check-label stretched-link border-select" name="category" id="photography" value="photography" hidden>
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="photography" value="photography" hidden>
                 <label for="photography">
-                    <img src="{% static 'quiz/imgs/photography.jpg' %}" class="thumbail" alt="An aerial photograph of a ski hill." width="200">
+                    <img src="{% static 'quiz/imgs/photography.jpg' %}" class="img-fluid" alt="An aerial photograph of a ski hill." width="200">
                 </label>
                 <p class="text-center">Photography</p>
             </div>
             <div class="col-sm-4">
                 <br>
-                <input type="checkbox" class="form-check-label stretched-link border-select" name="category" id="collage" value="collage" hidden>
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="collage" value="collage" hidden>
                 <label for="collage">
-                    <img src="{% static 'quiz/imgs/collage.jpg' %}" class="thumbnail" alt="An abstract geometric collage." width="200">
+                    <img src="{% static 'quiz/imgs/collage.jpg' %}" class="img-fluid" alt="An abstract geometric collage." width="200">
                 </label>
                 <p class="text-center">Collage</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link border-select" name="category" id="wall-sculpture" value="wall-sculpture" hidden>
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="wall-sculpture" value="wall-sculpture" hidden>
                 <label for="wall-sculpture">
-                    <img src="{% static 'quiz/imgs/wall_s1.jpg' %}" class="thumbnail" alt="A metal abstract wall sculpture composed of squiggly lines." width="200">
+                    <img src="{% static 'quiz/imgs/wall_s1.jpg' %}" class="img-fluid" alt="A metal abstract wall sculpture composed of squiggly lines." width="200">
                 </label>
                 <p class="text-center">Wall Sculpture</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link border-select" name="category" id="sculpture" value="sculpture" hidden>
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="sculpture" value="sculpture" hidden>
                 <label for="sculpture">
-                    <img src="{% static 'quiz/imgs/free_s.jpg' %}" class="thumbnail" alt="A small sculpture of abstract figures sitting together on a rock, made out of metal." width="200">
+                    <img src="{% static 'quiz/imgs/free_s.jpg' %}" class="img-fluid" alt="A small sculpture of abstract figures sitting together on a rock, made out of metal." width="200">
                 </label>
                 <p class="text-center">Sculpture</p>
             </div>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-check-label stretched-link border-select" name="category" id="drawing" value="drawing" hidden>
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="drawing" value="drawing" hidden>
                 <label for="drawing">
-                    <img src="{% static 'quiz/imgs/drawing.jpg' %}" class="thumbnail" alt="A charcoal drawing of two running horses." width="200">
+                    <img src="{% static 'quiz/imgs/drawing.jpg' %}" class="img-fluid" alt="A charcoal drawing of two running horses." width="200">
                 </label>
                 <p class="text-center">Drawing</p>
 
@@ -103,12 +106,14 @@
         </div>
         <div class="text-center">
             <a class="quiznav" href="/quiz/persona">Back</a>
-            <button type="submit" href="/quiz/category/process" class="btn btn-success quiznav">Next</button>
+            <button type="submit" href="/quiz/category/process" class="btn btn-primary quiznav">Next</button>
             <a class="quiznav" href="/quiz/contact">(skip to the end)</a>
         </div>
     </form>
 </div>
 
+
+<!-- </body> -->
 
 <script>
     console.log($);
@@ -116,7 +121,7 @@
 
         // select vs unselect images
         $('img').click(function(){
-            $(this).toggleClass('img-thumbnail')
+            $(this).toggleClass('border-img')
         });
     });
 </script>    
