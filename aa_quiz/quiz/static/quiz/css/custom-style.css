@@ -1,0 +1,12 @@
+label {
+    display: block;
+    /* background: lightgrey;
+    width: 100px;
+    height: 100px; */
+}
+
+.border-select:checked + label {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(175, 175, 175);
+}
