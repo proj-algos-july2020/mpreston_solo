@@ -16,10 +16,16 @@
         <img src="https://images.squarespace-cdn.com/content/v1/549dcda5e4b0a47d0ae1db1e/1553131581769-6OIRE1ASH19T9KQ9TL2Y/ke17ZwdGBToddI8pDm48kPqg4u7vxps8M6iyCGQlsKJZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzB60uDFbS1f04QYWH56YqOHOaxAV-iCZAwnXDQjr4GtzJs9rBwDwxu5aEShX3C7PU/ternary_tiny.png?format=500w" width="500" alt="graph with summary of results">
     </div>
     <div class="container bg-light" id="result:actions">
-        <p class="text-center">Possible follow up actions:</p>
+        <p class="text-center">The following actions are particularly relevant for this persona type:</p>
         <ul>
-            {% for action in persona_actions %}
-            <li>{{ action }}</li>
+            {% for rec in persona_recs %}
+            <li>{{ rec }}</li>
+            {% endfor %}
+        </ul>
+        <p>(out of all possible follow up actions):</p>
+        <ul>
+            {% for k, v in rec_options.items %}
+            <li>{{ v }}</li>
             {% endfor %}
         </ul>
     </div>
