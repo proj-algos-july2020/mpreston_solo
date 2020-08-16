@@ -4,7 +4,7 @@ import re
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from leads.models import Lead, LeadManager
-from .models import Persona
+from .models import Persona, Action
 # import matplotlib.pyplot as plt
 
 # Create your views here.
@@ -372,42 +372,12 @@ def process_contact(request):
 def q_result(request, id):
     # render quiz Results page
 
-    # recommendations:
-    recommendations = {
-        'Rising Stars': "Direct to Rising Stars pages.",
-        'Catalog': "Direct to Catalog pages.",
-        'Travel Stories': "Direct to Travel story pages.",
-        'Robo-Curator': "Send automated selection of works.",
-        'Schedule Call': "Schedule a call for a high-touch intake process.",
-        'TOAF': "Invite to explore The Other Art Fair.",
-        'Collections': "Direct to Collections Pages.",
-        'Browse Tutorial': "Browse onboarding walkthrough."
-    }
+    this_lead = Lead.objects.get(id=id)
 
     context = {
         'this_lead': Lead.objects.get(id=id),
-        'rec_options': recommendations,
+        'all_actions': Action.objects.all(),
+        'personas': this_lead.has_persona.all(),
     }
-
-    living_well_recs = (recommendations['Catalog'], recommendations['Travel Stories'], recommendations['Schedule Call'])
-    hip_enthusiast_recs = (recommendations['Rising Stars'], recommendations['Travel Stories'], recommendations['TOAF'])
-    collector_recs = (recommendations['Rising Stars'], recommendations['TOAF'], recommendations['Schedule Call'])
-    unknown_recs = (recommendations['Robo-Curator'], recommendations['Collections'], recommendations['Browse Tutorial'])
-
-    # PERSONA TYPES AND IDs:
-        # 1 - LIVING WELL
-        # 2 - HIP ENTHUSIAST
-        # 3 - COLLECTOR
-        # 4 - UNKNOWN
-
-    this_lead = Lead.objects.get(id=id)
-    if this_lead.has_persona == 'LIVING_WELL':
-        context.updates({'persona_recs': living_well_recs})
-    elif this_lead.has_persona == 'HIP ENTHUSIAST':
-        context.update({'persona_recs': hip_enthusiast_recs})
-    elif this_lead.has_persona == 'COLLECTOR':
-        context.update({'persona_recs': collector_recs})
-    else:
-        context.update({'persona_recs': unknown_recs})
 
     return render(request, 'quiz/snippets/result.html', context)

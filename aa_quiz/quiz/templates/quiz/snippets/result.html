@@ -1,33 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/quiz/css/custom-style.css' %}" rel="stylesheet" type="text/css">
+    <title>Art Advisory Quiz</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/leads">Leads <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
 <div class="container col-md-8 border" id="result:detail">
     <h4 class="text-center">Results</h4>
     <div class="container col-md-8">
         <p class="text-center">Based on the responses to the answered questions, this lead receives the following score and categorization:</p>
     </div>
-    <div class="container col-sm-6 bg-light border" id="result:score">
-        <p class="text-center">User Score:</p>
-        <h4 class="text-center">{{ request.session.user_score }} / XX </h4>
-        <p class="text-center">Persona Type:</p>
+    <div class="container col-sm-6 bg-light border text-center" id="result:score">
+        <h6>User Score:</h6>
+        <h5>{{ request.session.user_score }} / XX </h5>
+        <p class="small">(represents likelihood to convert)</p>
+        <br>
+        <h6>Persona Type:</h6>
         {% for persona in this_lead.has_persona.all %}
-        <h4 class="text-center">{{ persona.persona_type }}</h4>
+        <h5>{{ persona.persona_type }}</h5>
         {% endfor %}
+        <p class="small">(persona distribution illustrated below)</p>
     </div>
-    <div class="container col-sm-6">
-        <p class="text-center">Placeholder Ternary Plot:</p>
+    <div class="container col-sm-6 text-center">
         <img src="https://images.squarespace-cdn.com/content/v1/549dcda5e4b0a47d0ae1db1e/1553131581769-6OIRE1ASH19T9KQ9TL2Y/ke17ZwdGBToddI8pDm48kPqg4u7vxps8M6iyCGQlsKJZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzB60uDFbS1f04QYWH56YqOHOaxAV-iCZAwnXDQjr4GtzJs9rBwDwxu5aEShX3C7PU/ternary_tiny.png?format=500w" width="500" alt="graph with summary of results">
     </div>
-    <div class="container bg-light" id="result:actions">
-        <p class="text-center">The following actions are particularly relevant for this persona type:</p>
-        <ul>
-            {% for rec in persona_recs %}
-            <li>{{ rec }}</li>
-            {% endfor %}
-        </ul>
-        <p>(out of all possible follow up actions):</p>
-        <ul>
-            {% for k, v in rec_options.items %}
-            <li>{{ v }}</li>
-            {% endfor %}
-        </ul>
+    <div class="container row text_center" id="result:actions">
+        <br>
+        <div class="col-sm-2">
+            <br>
+        </div>
+        <div class="col-sm-8">
+        <p>Suggested follow-up actions for this persona type:</p>
+            <ul>
+                {% for persona in this_lead.has_persona.all %}
+                {% for action in persona.has_actions.all %}
+                <li>{{ action.description }}</li>
+                {% endfor %}{% endfor %}
+            </ul>
+        </div>
     </div>
     <div class="text-center">
         <a class="btn btn-primary" href="/leads/detail/{{ this_lead.id }}" role="button">See Lead Results Breakdown</a>
