@@ -90,14 +90,6 @@ def process_info_request(request):
     if 'art-info-url' not in request.POST:
         if 'art-info-artist' not in request.POST:
             errors['need_info'] = "Please enter a URL or the artist's name and title of the work."
-
-        # if 'art-info-artist' in request.POST:
-        #     if len(request.POST['art-info-artist']) < 2:
-        #         errors['art-info-artist'] = "Artist's name must be more than 2 characters."
-        # if 'art-info-title' in request.POST:
-        #     if len(request.POST['art-info-title']) < 1:
-        #         errors['art-info-title'] = "Please enter the artwork's title."
-    # if url entered:
     if not URL_REGEX.match(request.POST['art-info-url']):
         errors['art-info-url'] = "Please enter a valid url."
 
@@ -120,13 +112,11 @@ def process_info_request(request):
         request.session['art_title'] = request.POST['art-info-title']
         request.session['art_message'] = request.POST['art-info-message']
 
-        # score message length and add points for uploading photos:
+        # score message length:
         if len(request.POST['art-info-message']) > 20:
             request.session['user_score'] += 20
-        else: 
+        else:
             request.session['user_score'] += 0
-        if request.FILES:
-            request.session['user_score'] += 20
         # redirect to next form
         return redirect('/quiz/contact')
 
@@ -141,7 +131,6 @@ def process_spec_space(request):
     # validate
     print(request.POST)
     errors = {}
-
     if len(request.POST['specspace-num-works']) < 1:
         errors['num_works'] = "Please let us know how many artworks you are looking for."
     if len(request.POST['specspace-message']) < 1:
@@ -153,17 +142,17 @@ def process_spec_space(request):
             messages.error(request, value)
         return redirect('/quiz/spec_space')
         print(errors)
-
     else:
         # capture form results and store in sessions
         request.session['specspace-num-works'] = request.POST['specspace-num-works']
         request.session['specspace-message'] = request.POST['specspace-message']
-
         # score message length:
         if len(request.POST['specspace-message']) > 20:
             request.session['user_score'] += 25
-        else: 
+        else:
             request.session['user_score'] += 0
+        if request.FILES:
+            request.session['user_score'] += 20
         # redirect to next form
         return redirect('/quiz/persona')
 

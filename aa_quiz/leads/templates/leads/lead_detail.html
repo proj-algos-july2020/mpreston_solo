@@ -1,16 +1,19 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/quiz/css/custom-style.css' %}" rel="stylesheet" type="text/css">    
     <title>Lead Detail</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    {% load static %}
 </head>
 <body>
     <div class="wrapper container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <span class="navbar-text"><a class="btn btn-sm border-primary btn-light text-dark" href="/leads" role="button">Leads</a></span>
+        <br>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <span class="navbar-text"><a class="nav-link" href="/leads" role="button">Leads</a></span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                 </ul>
-                <span class="navbar-text"><a class="btn btn-sm border-primary btn-light text-dark" href="/quiz" role="button">Art Advisory Quiz</a></span>
+                <span class="navbar-text"><a class="nav-link" href="/quiz" role="button">Art Advisory Quiz</a></span>
             </div>
         </nav>
 
