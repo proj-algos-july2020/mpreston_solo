@@ -288,6 +288,7 @@ def process_contact(request):
         for key, value in request.session.items():
             results[key] = value
         brief = json.dumps(results)
+        print(brief)
 
         # get Boolean newsletter opt-in
         print(request.POST['newsletter'])

@@ -10,88 +10,70 @@
     <title>Lead Detail</title>
 </head>
 <body>
-    <div class="wrapper container">
-        <br>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <span class="navbar-text"><a class="nav-link" href="/leads" role="button">Leads</a></span>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav mr-auto">
-                </ul>
-                <span class="navbar-text"><a class="nav-link" href="/quiz" role="button">Art Advisory Quiz</a></span>
-            </div>
-        </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"></a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/leads">Leads <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/quiz">Quiz</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-        <div id="wrapper">
-            <div class="container">
-                <h2 class="display-5">{{lead.first_name}} {{lead.last_name}}</h2>
-                <br>
-                <p>Date Created: {{ lead.created_at }}</p>
-            </div>
-    
-            <div class="container" id="lead:results">
+    <div>
+        <div class="container">
+            <br>
+            <h2 class="display-5">{{lead.first_name}} {{lead.last_name}}</h2>
+            <p>Date Created: {{ lead.created_at }}</p>
+            <br>
+        </div>
 
-                <table class="table table-bordered table-striped">
-                    <h5>Contact Information</h5>
-                    <tr>
-                        <th scope="row">Email</th>
-                        <td><a href="mailto:{{ lead.email_address }}">{{ lead.email_address }}</a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Phone</th>
-                        <td><a href="tel:{{ lead.phone_number }}">{{ lead.phone_number }}</a></td>
-                    </tr>
-                </table>
-
-                <table class="table table-bordered table-striped">
-                    <h5>Lead Scoring</h5>
-                    <tr>
-                        <th scope="row">Intent Score</th>
-                        <td><a href="#">{{ lead.intent_score }}</a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Persona Type</th>
-                        <td><a href="#">{{ lead.has_persona.persona_type }}</a></td>
-                    </tr>
-                </table>
-
-                <table class="table table-bordered table-striped">
-                    <h5>Quiz Brief</h5>
-                    <tr>
-                        <th scope="row">Budget:</th>
-                        <td>${{ lead.budget_min }} - ${{lead.budget_max}}</td>
-                    </tr>
-                </table>
-
-                <h5>Quiz Brief:</h5>
-                <!-- {% for item in brief %}
-                <ul>
-                    <li>{{ item }}</li>
-                </ul>
-                {% endfor %} -->
-                <ul>{{ brief }}</ul>
-
-                <!-- <table class="table table-bordered table-striped">
-                    <h5>Quiz Brief</h5>
-                    {% for key, values in brief.items %}
-                        <tr>
-                            <th scope="row">{{ key }}:</th>
-                            {% for value in values.items %}
-                                <td>{{ value }}</td>
-                            {% endfor %}
-                        </tr>
+        <div class="container" id="lead:results">
+            <table class="table table-bordered table-striped">
+                <h5>Contact Information</h5>
+                <tr>
+                    <th scope="row">Email:</th>
+                    <td><a href="mailto:{{ lead.email_address }}">{{ lead.email_address }}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">Phone:</th>
+                    <td><a href="tel:{{ lead.phone_number }}">{{ lead.phone_number }}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">Intent Score:</th>
+                    <td>{{ lead.intent_score }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Persona Type:</th>
+                    {% for persona in lead.has_persona.all %}
+                    <td>{{ persona.persona_type }}</td>
                     {% endfor %}
-                </table> -->
+                </tr>
+                <tr>
+                    <th scope="row">Budget:</th>
+                    <td>${{ lead.budget_min }} - ${{lead.budget_max}}</td>
+                </tr>
+            </table>
 
-                <div>
-                    <br>
-                    <h5>Client Images:</h5>
-                        <img src="{{ lead.uploads.image.url }}" alt="image">
-                </div>
+            <h5>Quiz Brief:</h5>
+            {% for key, value in brief.items %}
+            <ul>
+                <li>{{ key }}: {{ value }}</li>
+            </ul>
+            {% endfor %}
+
+            <div>
+                <br>
+                <h5>Client Images:</h5>
+                    <img src="{{ lead.uploads.image.url }}" alt="image">
             </div>
         </div>
+    </div>
 </body>
 </html>
