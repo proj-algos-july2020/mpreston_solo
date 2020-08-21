@@ -191,10 +191,10 @@ def process_persona(request):
 
     # store counts in session for plotting:
     p_scores = {
-        'LW': lw_count,
-        'HE': he_count,
-        'CO': co_count,
-        'NA': na_count,
+        'living': lw_count,
+        'hip': he_count,
+        'collector': co_count,
+        'none': na_count,
         }
     request.session['p_scores'] = p_scores
     print(p_scores)
@@ -320,14 +320,18 @@ def process_contact(request):
             p_scores = request.session['p_scores']
         else:
             p_scores = {
-                'LW': 0,
-                'HE': 0,
-                'CO': 0,
-                'NA': 1,
+                'living': 0,
+                'hip': 0,
+                'collector': 0,
+                'none': 1,
                 }
         max_val = max(p_scores.values())
         max_keys = [k for k, v in p_scores.items() if v == max_val]
         print(max_keys, max_val)
+
+        raw_data = p_scores
+        request.session['raw_data'] = raw_data
+        
 
         # PERSONA TYPES AND IDs:
         # 1 - LIVING WELL
@@ -335,19 +339,19 @@ def process_contact(request):
         # 3 - COLLECTOR
         # 4 - UNKNOWN
         for key in max_keys:
-            if key == 'LW':
+            if key == 'living':
                 this_persona = Persona.objects.get(id=1)
                 this_persona.has_leads.add(new_lead)
                 print(f'Persona created: {this_persona.persona_type}')
-            elif key == 'HE':
+            elif key == 'hip':
                 this_persona = Persona.objects.get(id=2)
                 this_persona.has_leads.add(new_lead)
                 print(f'Persona created: {this_persona.persona_type}')
-            elif key == 'CO':
+            elif key == 'collector':
                 this_persona = Persona.objects.get(id=3)
                 this_persona.has_leads.add(new_lead)
                 print(f'Persona created: {this_persona.persona_type}')
-            elif key == 'NA':
+            elif key == 'none':
                 this_persona = Persona.objects.get(id=4)
                 this_persona.has_leads.add(new_lead)
                 print(f'Persona created: {this_persona.persona_type}')
@@ -364,10 +368,16 @@ def q_result(request, id):
 
     this_lead = Lead.objects.get(id=id)
 
+    # convert persona rawData to JSON for use in javascript
+    raw_data = request.session['raw_data']
+    json_data = json.dumps(raw_data)
+
+
     context = {
         'this_lead': Lead.objects.get(id=id),
         'all_actions': Action.objects.all(),
         'personas': this_lead.has_persona.all(),
+        'rawData': json_data,
     }
 
     return render(request, 'quiz/snippets/result.html', context)
