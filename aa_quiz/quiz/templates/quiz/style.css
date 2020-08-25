@@ -1,0 +1,33 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+    border: 1px solid yellow;
+}
+
+.pink {
+    color: orchid;
+}
+
+
+/* .primary {
+    color: #0d47a1;
+}
+.secondary {
+    color: #c5df18;
+}
+.success {
+    color: #8bcbff
+}
+.danger {
+    color: #e54304;
+}
+.warning {
+    color: #fff59d
+}
+.light {
+    color: #ffffcf;
+}
+.dark {
+    color: #002171;
+} */

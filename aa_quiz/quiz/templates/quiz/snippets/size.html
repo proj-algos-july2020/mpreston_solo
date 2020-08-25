@@ -1,0 +1,112 @@
+<!-- {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Advisory Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/quiz/css/custom-style.css' %}" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body> -->
+
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Leads <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wrapper container">
+        <div class="mb-2 bg-light text-dark"1>
+            <p class="text-left">Get Help from Our Expert Curators</p>
+        </div>
+
+        <br><br>
+
+        <div id="quiz-container"> -->
+
+
+
+            <div class="container col-md-8 border" id="search-detail-category">
+                <h4 class="text-center">Size</h4>
+                <div class="container text-right" id="live_score">
+                    <p>User Score: <span class="badge badge-secondary bg-warning ">{{ request.session.user_score }}</span></p>
+                </div>
+                <div class="container">
+                    <p class="text-center">Which size(s) of artwork are you looking for?</p>
+                </div>
+            
+            
+                <form action="/quiz/size/process" method="POST">
+                    {% csrf_token %}
+                    <div class="container">
+                        <label class="text-left" for="category">Select any/all that apply:</label>
+                    </div>
+                    <div class="form-group form-inline bg-light">
+                        <div class="col-sm-6">
+                            <br>
+                            <input type="checkbox" class="form-check-label stretched-link" name="size" id="small" value="small" hidden>
+                            <label for="small">
+                                <img src="{% static 'quiz/imgs/small1.png' %}" class="img-fluid" alt="An artwork between 0 and 19 inches in length rests on a mantle." width="200">
+                            </label>
+                            <p class="text-center">Small (0 - 19 inches)</p>
+                        </div>
+            
+                        <div class="col-sm-6">
+                            <br>
+                            <input type="checkbox" class="form-check-label stretched-link" name="size" id="medium" value="medium" hidden>
+                            <label for="medium">
+                                <img src="{% static 'quiz/imgs/medium1.png' %}" class="img-fluid" alt="An artwork between 20 and 39 inches in length hangs on a side wall." width="200">
+                            </label>
+                            <p class="text-center">Medium (20 - 39 inches)</p>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <br>
+                            <input type="checkbox" class="form-check-label stretched-link" name="size" id="large" value="large" hidden>
+                            <label for="large">
+                                <img src="{% static 'quiz/imgs/large2.jpg' %}" class="img-fluid" alt="An artwork between 40 and 59 inches in length hangs above a bed headboard." width="200">
+                            </label>
+                            <p class="text-center">Large (40 - 59 inches)</p>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <br>
+                            <input type="checkbox" class="form-check-label stretched-link" name="size" id="oversized" value="oversized" hidden>
+                            <label for="oversized">
+                                <img src="{% static 'quiz/imgs/oversized.png' %}" class="img-fluid" alt="An artwork 60 inches or greater in length hangs on a large living room wall." width="200">
+                            </label>
+                            <p class="text-center">Oversized (60+ inches)</p>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a class="quiznav" href="/quiz/style">Back</a>
+                        <button type="submit" href="/quiz/size/process" class="btn btn-primary quiznav">Next</button>
+                        <a class="quiznav" href="/quiz/contact">(skip to the end)</a>
+                    </div>
+                </form>
+            </div>
+
+<!-- </body> -->
+
+<script>
+    console.log($);
+    $(document).ready(function(){
+
+        // select vs unselect images
+        $('img').click(function(){
+            $(this).toggleClass('border-img')
+        });
+    });
+</script>   

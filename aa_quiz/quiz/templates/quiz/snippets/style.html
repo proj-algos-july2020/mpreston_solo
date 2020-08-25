@@ -1,0 +1,119 @@
+<!-- {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Advisory Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/quiz/css/custom-style.css' %}" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body> -->
+
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Leads <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wrapper container">
+        <div class="mb-2 bg-light text-dark"1>
+            <p class="text-left">Get Help from Our Expert Curators</p>
+        </div>
+
+        <br><br>
+
+        <div id="quiz-container"> -->
+
+<div class="container col-md-8 border" id="search-detail-style">
+    <h4 class="text-center">Styles</h4>
+    <div class="container text-right" id="live_score">
+        <p>User Score: <span class="badge badge-secondary bg-warning ">{{ request.session.user_score }}</span></p>
+    </div>
+    <div class="container">
+        <p class="text-center">What styles and qualities would you like to see?</p>
+    </div>
+    <form action="/quiz/style/process" method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <label class="text-left" for="style">Select any/all that apply:</label>
+        </div>
+        <div class="form-group form-inline bg-light">
+
+            <div class="col-sm-4">
+                <br>
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="texture" value="texture" hidden>
+                <label for="texture">
+                    <img src="{% static 'quiz/imgs/texture.jpg' %}" class="img-fluid" alt="An impasto painting of a beach." width="200">
+                </label>
+                <p class="text-center">Texture</p>
+            </div>
+            <div class="col-sm-4">
+                <br>
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="neutral" value="neutral" hidden>
+                <label for="neutral">
+                    <img src="{% static 'quiz/imgs/neutral.jpg' %}" class="img-fluid" alt="A timelapse photograph of people walking by a sand colored building." width="200">
+                </label>
+                <p class="text-center">Neutral</p>
+            </div>
+            <div class="col-sm-4">
+                <br>
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="surrealism" value="surrealism" hidden>
+                <label for="surrealism">
+                    <img src="{% static 'quiz/imgs/surrealism.jpg' %}" class="img-fluid" alt="A giraffe and flamingos parade in a french garden." width="200">
+                </label>
+                <p class="text-center">Surrealism</p>
+            </div>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="graphic" value="graphic" hidden>
+                <label for="graphic">
+                    <img src="{% static 'quiz/imgs/graphic2.jpg' %}" class="img-fluid" alt="A figure stands next to a blue pool on a wall at the edge of a blue horizon." width="200">
+                </label>
+                <p class="text-center">Graphic</p>
+            </div>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="bright" value="bright" hidden>
+                <label for="bright">
+                    <img src="{% static 'quiz/imgs/bright2.jpg' %}" class="img-fluid" alt="An bright abstract painting with turquoise and pink." width="200">
+                </label>
+                <p class="text-center">Bright</p>
+            </div>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-label stretched-link" name="style" id="minimalism" value="minimalism" hidden>
+                <label for="minimalism">
+                    <img src="{% static 'quiz/imgs/minimalist1.jpg' %}" class="img-fluid" alt="Gestural black brushstrokes against a white background." width="200">
+                </label>
+                <p class="text-center">Minimalism</p>
+            </div>
+        </div>
+        <div class="text-center">
+            <a class="quiznav" href="/quiz/subject">Back</a>
+            <button type="submit" href="/quiz/style/process" class="btn btn-primary quiznav">Next</button>
+            <a class="quiznav" href="/quiz/contact">(skip to the end)</a>
+        </div>
+    </form>
+</div>
+
+<!-- </body> -->
+
+<script>
+    console.log($);
+    $(document).ready(function(){
+
+        // select vs unselect images
+        $('img').click(function(){
+            $(this).toggleClass('border-img')
+        });
+    });
+</script>   

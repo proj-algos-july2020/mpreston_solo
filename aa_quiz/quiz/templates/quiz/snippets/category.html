@@ -1,0 +1,127 @@
+<!-- {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Advisory Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/quiz/css/custom-style.css' %}" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body> -->
+    
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Leads <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wrapper container">
+        <div class="mb-2 bg-light text-dark"1>
+            <p class="text-left">Get Help from Our Expert Curators</p>
+        </div>
+
+        <br><br>
+
+        <div id="quiz-container"> -->
+
+
+
+<div class="container col-md-8 border" id="search-detail-category">
+    <h4 class="text-center">Categories</h4>
+    <div class="container text-right" id="live_score">
+        <p>User Score: <span class="badge badge-secondary bg-warning ">{{ request.session.user_score }}</span></p>
+    </div>
+    <div class="container">
+        <p class="text-center">Which categories of art are you NOT interested in seeing?</p>
+    </div>
+
+
+    <form action="/quiz/category/process" method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <label class="text-left" for="category">Select any/all that apply:</label>
+        </div>
+        <div class="form-group form-inline bg-light">
+
+            <div class="col-sm-4">
+                <br>
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="painting" value="painting" hidden>
+                <label for="painting">
+                    <img src="{% static 'quiz/imgs/painting.jpg' %}" class="img-fluid" alt="A semi abstract painting of woman's face." width="200">
+                </label>
+                <p class="text-center">Painting</p>
+            </div>
+
+            <div class="col-sm-4">
+                <br>
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="photography" value="photography" hidden>
+                <label for="photography">
+                    <img src="{% static 'quiz/imgs/photography.jpg' %}" class="img-fluid" alt="An aerial photograph of a ski hill." width="200">
+                </label>
+                <p class="text-center">Photography</p>
+            </div>
+            <div class="col-sm-4">
+                <br>
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="collage" value="collage" hidden>
+                <label for="collage">
+                    <img src="{% static 'quiz/imgs/collage.jpg' %}" class="img-fluid" alt="An abstract geometric collage." width="200">
+                </label>
+                <p class="text-center">Collage</p>
+            </div>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="wall-sculpture" value="wall-sculpture" hidden>
+                <label for="wall-sculpture">
+                    <img src="{% static 'quiz/imgs/wall_s1.jpg' %}" class="img-fluid" alt="A metal abstract wall sculpture composed of squiggly lines." width="200">
+                </label>
+                <p class="text-center">Wall Sculpture</p>
+            </div>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="sculpture" value="sculpture" hidden>
+                <label for="sculpture">
+                    <img src="{% static 'quiz/imgs/free_s.jpg' %}" class="img-fluid" alt="A small sculpture of abstract figures sitting together on a rock, made out of metal." width="200">
+                </label>
+                <p class="text-center">Sculpture</p>
+            </div>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-label stretched-link" name="category" id="drawing" value="drawing" hidden>
+                <label for="drawing">
+                    <img src="{% static 'quiz/imgs/drawing.jpg' %}" class="img-fluid" alt="A charcoal drawing of two running horses." width="200">
+                </label>
+                <p class="text-center">Drawing</p>
+
+            </div>
+        </div>
+        <div class="text-center">
+            <a class="quiznav" href="/quiz/persona">Back</a>
+            <button type="submit" href="/quiz/category/process" class="btn btn-primary quiznav">Next</button>
+            <a class="quiznav" href="/quiz/contact">(skip to the end)</a>
+        </div>
+    </form>
+</div>
+
+
+<!-- </body> -->
+
+<script>
+    console.log($);
+    $(document).ready(function(){
+
+        // select vs unselect images
+        $('img').click(function(){
+            $(this).toggleClass('border-img')
+        });
+    });
+</script>    

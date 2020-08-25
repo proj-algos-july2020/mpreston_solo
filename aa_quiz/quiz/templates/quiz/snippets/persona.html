@@ -1,0 +1,59 @@
+<div class="container col-md-8 border" id="persona-detail">
+    <h4 class="text-center">What Does Art Mean To You?</h4>
+    <div class="container text-right" id="live_score">
+        <p>User Score: <span class="badge badge-secondary bg-warning ">{{ request.session.user_score }}</span></p>
+    </div>
+    <div class="container">
+        <p class="text-center">Tell us what you are looking for in an artwork.</p>
+    </div>
+    <form action="/quiz/persona/process" method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <label class="text-left" for="persona">Select any/all that apply:</label>
+        </div>
+        <div class="form-group col bg-light">
+            <br>
+            <div class="form-check form-group">
+                <input type="checkbox" class="form-check-input stretched-link" name="persona" id="lw1" value="lw">
+                <label class="form-check-label" for="lw1">I am new to buying art.</label>
+            </div>
+            <div class="form-check form-group">
+                <input type="checkbox" class="form-check-input stretched-link" name="persona" id="co1" value="co">
+                <label class="form-check-label" for="co1">I am looking for investment opportunities.</label>
+            </div>
+            <div class="form-check form-group">
+                <input type="checkbox" class="form-check-input stretched-link" name="persona" id="he1" value="he">
+                <label class="form-check-label" for="he1">The idea of discovering new artists from around the globe excites me.</label>
+            </div>
+            <div class="form-check form-group">
+                <input type="checkbox" class="form-check-input stretched-link" name="persona" id="lw2" value="lw">
+                <label class="form-check-label" for="lw2">Art is an essential part of my home-design.</label>
+            </div>
+            <div class="form-check form-group">
+                <input type="checkbox" class="form-check-input stretched-link" name="persona" id="co2" value="co">
+                <label class="form-check-label" for="co2">Art will be a part of my legacy to my family.</label>
+            </div>
+            <div class="form-check form-group">
+                <input type="checkbox" class="form-check-input stretched-link" name="persona" id="he2" value="he">
+                <label class="form-check-label" for="he2">I like culturally/socially relevant art.</label>
+            </div>
+            <div class="form-check form-group">
+                <input type="checkbox" class="form-check-input stretched-link" name="persona" id="lw3" value="lw">
+                <label class="form-check-label" for="lw3">I am looking for art to fit with a specific aesthetic.</label>
+            </div>
+            <div class="form-check form-group">
+                <input type="checkbox" class="form-check-input stretched-link" name="persona" id="he3" value="he">
+                <label class="form-check-label" for="he3">Art is part of how I tell my story.</label>
+            </div>
+            <div class="form-check form-group">
+                <input type="checkbox" class="form-check-input stretched-link" name="persona" id="co3" value="co">
+                <label class="form-check-label" for="co3">Art is a conversation starter.</label>
+            </div>
+        </div>
+        <div class="text-center">
+            <a class="quiznav" href="{{ request.session.persona_referer }}">Back</a>
+            <button type="submit" href="/quiz/persona/process" class="btn btn-primary quiznav">Next</button>
+            <a class="quiznav" href="/quiz/contact">(skip to the end)</a>
+        </div>
+    </form>
+</div>
