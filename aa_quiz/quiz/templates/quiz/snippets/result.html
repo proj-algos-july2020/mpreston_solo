@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,7 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
 
 
 <div class="container col-md-8 border" id="result:detail">
@@ -82,8 +82,8 @@
         c: rawData.map(function(d) { return d.collector; }),
         text: rawData.map(function(d) { return 'distribution'; }),
         marker: {
-            symbol: 100,
-            color: '#DB7365',
+            symbol: 400,
+            color: '#00295b',
             size: 14,
             line: { width: 2 }
         },
@@ -94,6 +94,7 @@
             aaxis: makeAxis('Living Well', 0),
             baxis: makeAxis('<br>Hip Enthusiast', 45),
             caxis: makeAxis('<br>Collector', -45),
+            bgcolor: '#B8E1DE',
         },
         annotations: [{
         showarrow: false,
