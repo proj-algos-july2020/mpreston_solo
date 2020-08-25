@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '/quiz/css/custom-style.css' %}" rel="stylesheet" type="text/css">
     <title>Art Advisory Quiz</title>
-    <script src='https://cdn.plot.ly/plotly-latest.min.js'><script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
@@ -70,9 +70,9 @@
 
 </body>
 
-
 <script>
-    var rawData = JSON.parse('{{ rawData|safe }}');
+    // var rawData = [{living: 2, hip: 0, collector: 1, none: 0}];
+    var rawData = [{{ rawData }}];
 
     Plotly.newPlot('plotDiv', [{
         type: 'scatterternary',
@@ -80,14 +80,15 @@
         a: rawData.map(function(d) { return d.living; }),
         b: rawData.map(function(d) { return d.hip; }),
         c: rawData.map(function(d) { return d.collector; }),
-        text: rawData.map(function(d) { return d.label; }),
+        text: rawData.map(function(d) { return 'distribution'; }),
         marker: {
             symbol: 100,
             color: '#DB7365',
             size: 14,
             line: { width: 2 }
         },
-    }], {
+    }], 
+        {
         ternary: {
             sum: 3,
             aaxis: makeAxis('Living Well', 0),

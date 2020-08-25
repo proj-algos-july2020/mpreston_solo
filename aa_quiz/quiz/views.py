@@ -371,13 +371,14 @@ def q_result(request, id):
     # convert persona rawData to JSON for use in javascript
     raw_data = request.session['raw_data']
     json_data = json.dumps(raw_data)
-
+    no_quotes = json_data.replace('"', '')
+    print(no_quotes)
 
     context = {
         'this_lead': Lead.objects.get(id=id),
         'all_actions': Action.objects.all(),
         'personas': this_lead.has_persona.all(),
-        'rawData': json_data,
+        'rawData': no_quotes,
     }
 
     return render(request, 'quiz/snippets/result.html', context)
