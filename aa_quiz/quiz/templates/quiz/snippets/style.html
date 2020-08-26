@@ -1,40 +1,4 @@
-<!-- {% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Art Advisory Quiz</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static '/quiz/css/custom-style.css' %}" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body> -->
-
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Leads <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="wrapper container">
-        <div class="mb-2 bg-light text-dark"1>
-            <p class="text-left">Get Help from Our Expert Curators</p>
-        </div>
-
-        <br><br>
-
-        <div id="quiz-container"> -->
+{% load static %}
 
 <div class="container col-md-8 border" id="search-detail-style">
     <h4 class="text-center">Styles</h4>
@@ -51,7 +15,7 @@
         </div>
         <div class="form-group form-inline bg-light">
 
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-center">
                 <br>
                 <input type="checkbox" class="form-check-label stretched-link" name="style" id="texture" value="texture" hidden>
                 <label for="texture">
@@ -59,7 +23,7 @@
                 </label>
                 <p class="text-center">Texture</p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-center">
                 <br>
                 <input type="checkbox" class="form-check-label stretched-link" name="style" id="neutral" value="neutral" hidden>
                 <label for="neutral">
@@ -67,7 +31,7 @@
                 </label>
                 <p class="text-center">Neutral</p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-center">
                 <br>
                 <input type="checkbox" class="form-check-label stretched-link" name="style" id="surrealism" value="surrealism" hidden>
                 <label for="surrealism">
@@ -75,21 +39,24 @@
                 </label>
                 <p class="text-center">Surrealism</p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-center">
+                <br>
                 <input type="checkbox" class="form-check-label stretched-link" name="style" id="graphic" value="graphic" hidden>
                 <label for="graphic">
                     <img src="{% static 'quiz/imgs/graphic2.jpg' %}" class="img-fluid" alt="A figure stands next to a blue pool on a wall at the edge of a blue horizon." width="200">
                 </label>
                 <p class="text-center">Graphic</p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-center">
+                <br>
                 <input type="checkbox" class="form-check-label stretched-link" name="style" id="bright" value="bright" hidden>
                 <label for="bright">
                     <img src="{% static 'quiz/imgs/bright2.jpg' %}" class="img-fluid" alt="An bright abstract painting with turquoise and pink." width="200">
                 </label>
                 <p class="text-center">Bright</p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-center">
+                <br>
                 <input type="checkbox" class="form-check-label stretched-link" name="style" id="minimalism" value="minimalism" hidden>
                 <label for="minimalism">
                     <img src="{% static 'quiz/imgs/minimalist1.jpg' %}" class="img-fluid" alt="Gestural black brushstrokes against a white background." width="200">
