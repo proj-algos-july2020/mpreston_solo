@@ -36,6 +36,9 @@ def process_view(request):
     # or, return redirect('quiz/next_view')
 
 '''
+def about(request):
+    # render about page which provides project context
+    return render(request, 'quiz/about.html')
 
 
 def q_welcome(request):

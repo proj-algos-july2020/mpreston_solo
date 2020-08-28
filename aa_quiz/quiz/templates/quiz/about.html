@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static '/quiz/css/custom-style.css' %}" rel="stylesheet" type="text/css">
+        <title>Art Advisory Quiz</title>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"></a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/quiz">About</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/quiz/start">Quiz</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/leads">Leads <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <br>
+        <h2>The Art Advisory Quiz</h2>
+        <h6>A lead-generation tool for an online art gallery, with customer persona identification logic and 'likelihood-to-convert' metrics.</h6>
+        <br>
+        <h4>Background:</h4>
+        <p>I work at an online art gallery as an art advisor, and one of our main lead-generation 
+            tools is an art advisory questionnaire where users can request personalized artwork suggestions 
+            from an art advisor. As an art advisor, I respond to these requests by hand-curating a selection 
+            of artworks that I think the user will like, based on the information in their quiz.
+        </p>
+        <br>
+        <h4>Problem:</h4> 
+        <p>Our current quiz experience does not provide the art advisor with any information 
+            about the lead in terms of their likelihood to convert, nor does it identify 
+            a lead by what customer persona bucket they fall into. As the business scales and our lead numbers grow, 
+            art advisors don't know how to prioritize new leads, and a high intent request might wait 5+ days for a response, 
+            growing cold and/or frustrated.
+        </p>
+        <br> 
+        <h4>Proposal:</h4>
+        <p>This project addresses the above issues by creating a new quiz flow that will capture 
+            both intent and customer persona type of the user based on their responses. This data will allow 
+            advisors to address high intent leads first, users can be guided to content that is 
+            relevant to them while they wait, and low intent leads can be weeded out. 
+        </p>
+        <br>  
+        <h4>Product Notes:</h4>
+        <p>Rather than building a public-facing quiz that is ready for leads to use, 
+            I've built an admin-transparent quiz that demonstrates:
+            <ol>
+                <li>data collection and scoring as users answer quiz questions;</li>
+                <li>an end result categorization, based on analysis of the users responses;</li>
+                <li>suggestions for relevant content to be served to the user, based on their identified persona type.</li>
+            </ol>
+        </p>
+        <p>
+            When you <b><a href="/quiz/start">take the quiz</a></b>, you will notice a score being awarded as you answer questions. Keep in mind that these scores:
+            <ol>
+                <li>have arbitrary values, but are meant to show that certain types of inquiries should receive higher value than others;</li>
+                <li>would benefit from recalibration after an analysis of users' predicted intent versus actual purchase behaviours;</li>
+                <li>do not have an upper limit, but a cap could be determined after some user testing.</li>
+            </ol>
+        </p>
+        <p>Please feel free to share your feedback, report a bug, or get in touch with me, <a href="mailto:monty.preston5@gmail.com">here</a>!</p>
+        
+        <br>
+        <br>
+        
+        <h6>Built With: Python | Javascript | HTML | CSS | Django | JQuery | AJAX | Bootstrap | SQLite </h6>
+
+    </div>
+
+    
+</body>
+</html>
