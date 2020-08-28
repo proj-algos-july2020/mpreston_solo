@@ -4,6 +4,17 @@ from django.db import models
 
 
 class Persona(models.Model):
+    # PERSONA_TYPE_CHOICES = [
+    #     ('LIVING_WELL', 'Living Well'),
+    #     ('HIP_ENTHUSIAST', 'Hip Enthusiast'),
+    #     ('COLLECTOR', 'Collector'),
+    #     ('UNKNOWN', 'Unknown')
+    # ]
+    # persona_type = models.CharField(
+    #     max_length=45,
+    #     choices=PERSONA_TYPE_CHOICES,
+    #     default='UNKNOWN',
+    #     )
     persona_type = models.CharField(max_length=45)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -12,17 +23,6 @@ class Persona(models.Model):
 
     def __str__(self):
         return f'{self.persona_type}'
-
-    # def main():
-    #     # Instantiate PERSONA TYPES with the following IDs:
-    #     # 1 - LIVING WELL
-    #     # 2 - HIP ENTHUSIAST
-    #     # 3 - COLLECTOR
-    #     # 4 - UNKNOWN
-    #     p1 = Persona(persona_type='LIVING WELL')
-    #     p2 = Persona(persona_type='HIP ENTHUSIAST')
-    #     p3 = Persona(persona_type='COLLECTOR')
-    #     p4 = Persona(persona_type='UNKNOWN')
 
 
 class Action(models.Model):
