@@ -36,32 +36,33 @@
     <div class="container">
         <br>
         <h2>The Art Advisory Quiz</h2>
-        <h6>A lead-generation tool for an online art gallery, with customer persona identification logic and 'likelihood-to-convert' metrics.</h6>
+        <h6>A lead-generation tool for an online art gallery, with customer persona identification logic and 'likelihood-to-convert' scoring.</h6>
         <br>
         <h4>Background:</h4>
-        <p>I work at an online art gallery as an art advisor, and one of our main lead-generation 
-            tools is an art advisory questionnaire where users can request personalized artwork suggestions 
-            from an art advisor. As an art advisor, I respond to these requests by hand-curating a selection 
-            of artworks that I think the user will like, based on the information in their quiz.
+        <p>I work at an online art gallery as an art advisor, and one of our lead-generation 
+            tools is an art advisory questionnaire where users can request personalized a selection of 
+            personalized artwork suggestions put together by an art advisor. As an art advisor, its my 
+            responsibility to respond to these requests by hand-curating a selection of artworks that I 
+            think the user will like, based on the information they submitted in their quiz.
         </p>
         <br>
         <h4>Problem:</h4> 
-        <p>Our current quiz experience does not provide the art advisor with any information 
-            about the lead in terms of their likelihood to convert, nor does it identify 
-            a lead by what customer persona bucket they fall into. As the business scales and our lead numbers grow, 
-            art advisors don't know how to prioritize new leads, and a high intent request might wait 5+ days for a response, 
-            growing cold and/or frustrated.
+        <p>The information communicated in the quiz brief is limited to the types of art a lead is interested 
+            in reviewing. It does not provide the art advisor with any information about the lead in terms of 
+            their likelihood to convert, nor does it identify a lead by what customer persona bucket they fall 
+            into. As the business scales and our lead numbers grow, advisors don't know how to prioritize new 
+            leads, and a high intent request might wait 5+ days for a response, growing cold and/or frustrated.
         </p>
         <br> 
         <h4>Proposal:</h4>
         <p>This project addresses the above issues by creating a new quiz flow that will capture 
-            both intent and customer persona type of the user based on their responses. This data will allow 
-            advisors to address high intent leads first, users can be guided to content that is 
-            relevant to them while they wait, and low intent leads can be weeded out. 
+            both intent and customer persona type of the user based on their responses. This data will
+            (1) help advisors to address high intent leads first, (2) guide users to content that is 
+            relevant to them while they wait, and (3) weed out low intent leads. 
         </p>
         <br>  
         <h4>Product Notes:</h4>
-        <p>Rather than building a public-facing quiz that is ready for leads to use, 
+        <p>Rather than building a user-facing quiz that reflects what a user might see if they were to take the quiz, 
             I've built an admin-transparent quiz that demonstrates:
             <ol>
                 <li>data collection and scoring as users answer quiz questions;</li>
