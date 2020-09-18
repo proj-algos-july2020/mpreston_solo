@@ -26,7 +26,7 @@ If you find a problem, feel free to [start an issue](https://github.com/proj-alg
     in reviewing. It does not provide the art advisor with any information about the lead in terms of 
     their likelihood to convert, nor does it identify a lead by what customer persona bucket they fall 
     into. As the business scales and our lead numbers grow, advisors don't know how to prioritize new 
-    leads, and a high intent request might wait 5+ days for a response, growing cold and/or frustrated.
+    leads, and a high intent request might wait 5+ days for a response, getting cold (and frustrated!!!).
 </p>
 <h4>Proposal:</h4>
 <p>This project addresses the above issues by creating a new quiz flow that will capture 
