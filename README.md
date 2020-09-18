@@ -6,7 +6,7 @@
 
 This project was built with <b> Python | Javascript | HTML | CSS | Django | Plotly | JQuery | AJAX | Bootstrap | SQLite </b>
 
-To give it a go, clone this repo, `cd` into the `aaquiz` directory, activate your virtualenv, and then install the dependencies listed in `requirements.txt`:    
+To give it a go, clone this repo, `cd` into the `aa_quiz` directory, activate your virtualenv, and then install the dependencies listed in `requirements.txt`:    
 
     pip install -r requirements.txt
 
