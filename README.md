@@ -9,13 +9,19 @@ This project was built with <b> Python | Javascript | HTML | CSS | Django | Plot
 To give it a go, clone this repo, `cd` to the directory where requirements.txt is located, activate your virtualenv, and then install the dependencies listed in `requirements.txt`:    
 
     pip install -r requirements.txt
+
+`cd` into `aaquiz`and run the server,
     
-Note: You *do* need to run it with the database provided (for now).
+    python3 manage.py runserver
+    
+and open a window in your browser with your local address (in my case: http://localhost:8000/quiz).
+    
+> Note: You *do* need to run it with the database provided (for now). And, you need '/quiz' at the end of your local url. 
 
 If you find a problem, feel free to [start an issue](https://github.com/proj-algos-july2020/mpreston_solo/issues).
 
 
-
+<br>
 <h4>Background:</h4>
 <p>I work at an online art gallery as an art advisor, and one of our lead-generation 
     tools is an art advisory questionnaire where users can request personalized a selection of 
