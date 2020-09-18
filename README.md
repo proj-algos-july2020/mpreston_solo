@@ -51,4 +51,6 @@ If you find a problem, feel free to [start an issue](https://github.com/proj-alg
         <li>do not have an upper limit, but a cap could be determined after some user testing.</li>
     </ol>
 </p>
+<br>
 
+Extra: Watch a [not-so-quick video](https://drive.google.com/file/d/1Nrq7slWzBBAr6MS1VJxEYBZApGqqaCKe/view?usp=sharing) of me running through the quiz at a not-so-polished stage... watch at 2x speed and you'll get the gist ;)
