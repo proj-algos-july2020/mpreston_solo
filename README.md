@@ -9,6 +9,7 @@ To give it a go, clone this repo, `cd` to the directory where requirements.txt i
 
     pip install -r requirements.txt
     
+Note: You *do* need to run it with the database provided (for now).
 
 If you find a problem, feel free to [start an issue](https://github.com/proj-algos-july2020/mpreston_solo/issues).
 
