@@ -5,6 +5,7 @@
 <h4>Requirements</h4>
 
 This project was built with <b> Python | Javascript | HTML | CSS | Django | Plotly | JQuery | AJAX | Bootstrap | SQLite </b>
+
 To give it a go, clone this repo, `cd` to the directory where requirements.txt is located, activate your virtualenv, and then install the dependencies listed in `requirements.txt`:    
 
     pip install -r requirements.txt
